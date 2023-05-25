@@ -1,31 +1,35 @@
 package pl.ksr.model.calculation.functions;
 
 import org.junit.jupiter.api.Test;
+import pl.ksr.calculation.functions.TrapezoidalFunction;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class TrapezoidalFunctionTest {
 
     @Test
-    void getMemberShipValue() {
+    void getMembershipDegree() {
         TrapezoidalFunction trap = new TrapezoidalFunction(150, 210, 300, 380);
-        assertEquals(0,trap.getMemberShipValue(23));
-        assertEquals(0,trap.getMemberShipValue(400));
-        assertEquals(0,trap.getMemberShipValue(150));
-        assertEquals(0,trap.getMemberShipValue(380));
-        assertEquals(0.3333333333333335,trap.getMemberShipValue(170));
-        assertEquals(1,trap.getMemberShipValue(230));
-        assertEquals(0.125,trap.getMemberShipValue(370));
+        assertEquals(0, trap.getValue(23));
+        assertEquals(0, trap.getValue(400));
+        assertEquals(0, trap.getValue(150));
+        assertEquals(0, trap.getValue(380));
+        assertEquals(0.3333333333333333, trap.getValue(170));
+        assertEquals(1, trap.getValue(230));
+        assertEquals(0.125, trap.getValue(370));
     }
+
     @Test
-    void getMemberShipValueForTrapezWithoutLeftArm() {
+    void getMembershipDegreeForTrapezWithoutLeftArm() {
         TrapezoidalFunction trap = new TrapezoidalFunction(210, 210, 300, 380);
-        assertEquals(0,trap.getMemberShipValue(200));
-        assertEquals(1,trap.getMemberShipValue(210));
-    }    @Test
-    void getMemberShipValueForTrapezWithoutRightArm() {
+        assertEquals(0, trap.getValue(200));
+        assertEquals(1, trap.getValue(210));
+    }
+
+    @Test
+    void getMembershipDegreeForTrapezWithoutRightArm() {
         TrapezoidalFunction trap = new TrapezoidalFunction(150, 210, 300, 300);
-        assertEquals(0,trap.getMemberShipValue(310));
-        assertEquals(1,trap.getMemberShipValue(300));
+        assertEquals(0, trap.getValue(310));
+        assertEquals(1, trap.getValue(300));
     }
 }
