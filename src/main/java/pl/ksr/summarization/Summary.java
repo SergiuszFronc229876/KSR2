@@ -60,7 +60,7 @@ public class Summary {
         } else if (isFirstForm) {
             m = cars.size();
         }
-        return quantifier.getLabel().getMembership(r / m);
+        return quantifier.getFuzzySet().getMembershipDegree(r / m);
     }
 
     public double getDegreeOfImprecision_T2() {
@@ -110,7 +110,7 @@ public class Summary {
     }
 
     public double getDegreeOfQuantifierImprecision_T6() {
-        FuzzySet fs = quantifier.getLabel().getFuzzySet();
+        FuzzySet fs = quantifier.getFuzzySet();
         double measure = fs.getSupport().getSize();
         if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
             return 1.0 - (measure / cars.size());
@@ -120,7 +120,7 @@ public class Summary {
     }
 
     public double getDegreeOfQuantifierCardinality_T7() {
-        FuzzySet fs = quantifier.getLabel().getFuzzySet();
+        FuzzySet fs = quantifier.getFuzzySet();
         double measure = fs.getCardinality();
         if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
             return 1.0 - (measure / cars.size());
@@ -181,11 +181,11 @@ public class Summary {
     }
 
     private double fieldForLabel(Label l, CarDetails c) {
-        return switch (l.getName()) {
+        return switch (l.getLinguisticVariable()) {
             case "Cena" -> c.getPrice();
             case "Przebieg" -> c.getMileage();
             case "Moc silnika" -> c.getHorsepower();
-            case "Zużycie Paliwa na 100 km" -> c.getFuelEconomy();
+            case "Zużycie paliwa na 100 km" -> c.getFuelEconomy();
             case "Pojemność silnika" -> c.getEngineDisplacement();
             case "Długość" -> c.getLength();
             case "Pojemność zbiornika paliwa" -> c.getFuelTankVolume();

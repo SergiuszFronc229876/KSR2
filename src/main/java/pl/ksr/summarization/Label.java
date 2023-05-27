@@ -8,8 +8,9 @@ import pl.ksr.calculation.sets.FuzzySet;
 @Getter
 public class Label {
     private String name;
+    private String linguisticVariable;
     private FuzzySet fuzzySet;
-    private LinguisticVariable linguisticVariable;
+
     public double getMembership(Double x) {
         return fuzzySet.getMembershipDegree(x);
     }

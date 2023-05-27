@@ -15,8 +15,8 @@ public class ContinuousSet implements ClassicSet {
     private final double endOfUniverse;
 
     public ContinuousSet(double beginOfUniverse, double endOfUniverse) {
-        if (beginOfUniverse <= endOfUniverse) {
-            throw new IllegalArgumentException(String.format("endOfUniverse:%f must be greater than beginOfUniverse:%f", beginOfUniverse, endOfUniverse));
+        if (beginOfUniverse >= endOfUniverse) {
+            throw new IllegalArgumentException(String.format("endOfUniverse:%s must be greater than beginOfUniverse:%s", endOfUniverse, beginOfUniverse));
         }
         this.beginOfUniverse = beginOfUniverse;
         this.endOfUniverse = endOfUniverse;
