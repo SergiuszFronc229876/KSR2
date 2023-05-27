@@ -16,7 +16,7 @@ public class ContinuousSet implements ClassicSet {
 
     public ContinuousSet(double beginOfUniverse, double endOfUniverse) {
         if (beginOfUniverse <= endOfUniverse) {
-            throw new IllegalArgumentException(String.format("endOfUniversebeginOfUniverse:%f must be greater than :%f", beginOfUniverse, endOfUniverse));
+            throw new IllegalArgumentException(String.format("endOfUniverse:%f must be greater than beginOfUniverse:%f", beginOfUniverse, endOfUniverse));
         }
         this.beginOfUniverse = beginOfUniverse;
         this.endOfUniverse = endOfUniverse;
@@ -46,7 +46,7 @@ public class ContinuousSet implements ClassicSet {
         return new ContinuousSet(newStart, newEnd);
     }
 
-    public ContinuousSet intersection(ContinuousSet otherSet) {;
+    public ContinuousSet intersection(ContinuousSet otherSet) {
         if ((beginOfUniverse > otherSet.getBeginOfUniverse() && endOfUniverse > otherSet.getBeginOfUniverse()) ||
                 (beginOfUniverse < otherSet.getEndOfUniverse() && endOfUniverse < otherSet.getEndOfUniverse())) {
             throw new IllegalArgumentException("Sets cannot be disjoint");

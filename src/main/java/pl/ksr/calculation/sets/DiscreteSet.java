@@ -2,7 +2,6 @@ package pl.ksr.calculation.sets;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import java.util.HashSet;
@@ -16,7 +15,7 @@ public class DiscreteSet implements ClassicSet {
     private final Set<Double> elements;
 
     public DiscreteSet(Set<Double> elements) {
-        if(elements.isEmpty()) {
+        if (elements.isEmpty()) {
             throw new IllegalArgumentException("Set cannot be empty");
         }
         this.elements = elements;

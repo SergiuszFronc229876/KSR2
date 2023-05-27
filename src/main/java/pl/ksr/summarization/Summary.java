@@ -67,7 +67,7 @@ public class Summary {
         return (double) t / h;
     }
 
-    public double getDegreeOfAppropriatness_T4() {
+    public double getDegreeOfAppropriateness_T4() {
         double multiply = 1.0;
         for (Label summarizer : summarizers) {
             double r = 0.0;
@@ -144,7 +144,6 @@ public class Summary {
     public double getLengthOfQualifier_T11() {
         return 2.0 * Math.pow(0.5, isFirstForm ? 1 : qualifiers.size());
     }
-
 
     private double and(List<Label> labels, CarDetails car) {
         double min = 1.0;
