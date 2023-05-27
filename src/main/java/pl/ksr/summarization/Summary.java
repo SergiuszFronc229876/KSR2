@@ -105,7 +105,6 @@ public class Summary {
         }
     }
 
-    /* T8 */
     public double getDegreeOfOfSummarizerCardinality_T8() {
         double multiply = 1.0;
         for (Label summarizer : summarizers) {
@@ -115,7 +114,6 @@ public class Summary {
         return 1.0 - multiply;
     }
 
-    /* T9 */
     public double getDegreeOfQualifierImprecision_T9() {
         double multiply = 1.0;
         for (Label qualifier : qualifiers) {
@@ -129,7 +127,6 @@ public class Summary {
         }
     }
 
-    /* T10 */
     public double getDegreeOfQualifierCardinality_T10() {
         double multiply = 1;
         for (Label qualifier : qualifiers) {
@@ -144,7 +141,6 @@ public class Summary {
         }
     }
 
-    /* T11 */
     public double getLengthOfQualifier_T11() {
         return 2.0 * Math.pow(0.5, isFirstForm ? 1 : qualifiers.size());
     }
