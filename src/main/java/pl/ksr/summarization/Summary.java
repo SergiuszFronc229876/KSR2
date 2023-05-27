@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import pl.ksr.calculation.sets.FuzzySet;
 import pl.ksr.database.CarDetails;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 public class Summary {
@@ -16,6 +18,28 @@ public class Summary {
     private final List<CarDetails> cars2;
     private boolean isFirstForm;
 
+    public Map<String, Double> calculateMeasures() {
+        Map<String, Double> measures = new HashMap<>();
+        measures.put("T1", getDegreeOfTruth_T1());
+        measures.put("T2", getDegreeOfImprecision_T2());
+        measures.put("T3", getDegreeOfCovering_T3());
+        measures.put("T4", getDegreeOfAppropriateness_T4());
+        measures.put("T5", getDegreeOfSummary_T5());
+        measures.put("T6", getDegreeOfQuantifierImprecision_T6());
+        measures.put("T7", getDegreeOfQuantifierCardinality_T7());
+        measures.put("T8", getDegreeOfOfSummarizerCardinality_T8());
+        measures.put("T9", getDegreeOfQualifierImprecision_T9());
+        measures.put("T10", getDegreeOfQualifierCardinality_T10());
+        measures.put("T11", getLengthOfQualifier_T11());
+        return measures;
+    }
+
+    public double calculateQuality() {
+        Map<String, Double> measures = calculateMeasures();
+        return measures.entrySet().stream()
+                .mapToDouble(e -> e.getValue() * weights.getWeights().get(e.getKey()))
+                .sum();
+    }
 
     public double getDegreeOfTruth_T1() {
         double r = 0.0;
@@ -157,11 +181,18 @@ public class Summary {
     }
 
     private double fieldForLabel(Label l, CarDetails c) {
-        switch (l.getName()) {
-            case "Cena":
-                return c.getPrice();
-            default:
-                throw new IllegalStateException(String.format("Wrong label name: %s", l.getName()));
-        }
+        return switch (l.getName()) {
+            case "Cena" -> c.getPrice();
+            case "Przebieg" -> c.getMileage();
+            case "Moc silnika" -> c.getHorsepower();
+            case "Zużycie Paliwa na 100 km" -> c.getFuelEconomy();
+            case "Pojemność silnika" -> c.getEngineDisplacement();
+            case "Długość" -> c.getLength();
+            case "Pojemność zbiornika paliwa" -> c.getFuelTankVolume();
+            case "Rozstaw osi" -> c.getWheelbase();
+            case "Moment obrotowy" -> c.getTorque();
+            case "Szerokość" -> c.getWidth();
+            default -> throw new IllegalStateException(String.format("Wrong label name: %s", l.getName()));
+        };
     }
 }

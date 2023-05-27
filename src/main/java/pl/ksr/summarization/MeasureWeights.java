@@ -8,7 +8,7 @@ import java.util.Map;
 @AllArgsConstructor
 @Getter
 public class MeasureWeights {
-    private Map<Integer, Double> weights;
+    private Map<String, Double> weights;
 
     public boolean areCorrect() {
         return weights.values()
