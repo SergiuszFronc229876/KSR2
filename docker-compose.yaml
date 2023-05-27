@@ -1,9 +1,10 @@
 version: '3.3'
 services:
   db:
-    image: postgis/postgis:14-3.3
+    image: postgres:13
     restart: unless-stopped
     env_file: .env
+    user: '${POSTGRES_USER}'
     ports:
       - '${POSTGRES_LOCAL_PORT}:${POSTGRES_DOCKER_PORT}'
     healthcheck:
