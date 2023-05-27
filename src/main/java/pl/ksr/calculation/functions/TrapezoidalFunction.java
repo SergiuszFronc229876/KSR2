@@ -27,4 +27,19 @@ public class TrapezoidalFunction implements MembershipFunction {
             return (rightMin - x) / (rightMin - rightMax);
         }
     }
+
+    @Override
+    public double getAreaFunction() {
+        return ((rightMin - leftMin) + (rightMax - leftMin)) / 2;
+    }
+
+    @Override
+    public double getLeftLimit() {
+        return leftMin;
+    }
+
+    @Override
+    public double getRightLimit() {
+        return rightMin;
+    }
 }

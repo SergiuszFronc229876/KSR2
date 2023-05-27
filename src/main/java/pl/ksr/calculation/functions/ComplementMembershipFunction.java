@@ -16,4 +16,19 @@ public class ComplementMembershipFunction implements MembershipFunction {
     public double getValue(double x) {
         return 1 - function.getValue(x);
     }
+
+    @Override
+    public double getAreaFunction() {
+        throw new UnsupportedOperationException("Not implemented yet."); // TODO: need implementation
+    }
+
+    @Override
+    public double getLeftLimit() {
+        return function.getLeftLimit();
+    }
+
+    @Override
+    public double getRightLimit() {
+        return function.getRightLimit();
+    }
 }

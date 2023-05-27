@@ -27,6 +27,10 @@ public class ContinuousSet implements ClassicSet {
         return beginOfUniverse < endOfUniverse;
     }
 
+    @Override
+    public double getSize() {
+        return endOfUniverse - beginOfUniverse;
+    }
 
     public ContinuousSet complement(double newBeginOfUniverse, double newEndOfUniverse) {
         return new ContinuousSet(newBeginOfUniverse, newEndOfUniverse);

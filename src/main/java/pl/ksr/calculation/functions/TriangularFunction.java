@@ -17,12 +17,29 @@ public class TriangularFunction implements MembershipFunction {
 
     @Override
     public double getValue(double x) {
-        if (x <= leftMin || x >= rightMin) {
-            return 0.0;
-        } else if (x >= centreMax) {
+        if (x == centreMax && (centreMax == leftMin || centreMax == rightMin)) {
+            return 1.0;
+        } else if (x >= centreMax && x <= rightMin) {
             return (rightMin - x) / (rightMin - centreMax);
-        } else {
+        } else if (x < centreMax && x >= leftMin) {
             return (x - leftMin) / (centreMax - leftMin);
+        } else {
+            return 0.0;
         }
+    }
+
+    @Override
+    public double getAreaFunction() {
+        return (rightMin - leftMin) / 2;
+    }
+
+    @Override
+    public double getLeftLimit() {
+        return leftMin;
+    }
+
+    @Override
+    public double getRightLimit() {
+        return rightMin;
     }
 }

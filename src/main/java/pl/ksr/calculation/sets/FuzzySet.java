@@ -4,9 +4,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+import pl.ksr.calculation.functions.ComplementMembershipFunction;
+import pl.ksr.calculation.functions.IntersectMembershipFunction;
 import pl.ksr.calculation.functions.MembershipFunction;
+import pl.ksr.calculation.functions.UnionMembershipFunction;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,7 +31,7 @@ public class FuzzySet {
                     .mapToDouble(this::getMembershipDegree)
                     .sum();
         } else {
-            throw new UnsupportedOperationException("Not implemented yet."); // TODO: need implementation
+            return membershipFunction.getAreaFunction();
         }
     }
 
@@ -41,13 +43,12 @@ public class FuzzySet {
                     .collect(Collectors.toSet());
             return new DiscreteSet(supportElements);
         } else {
-            throw new UnsupportedOperationException("Not implemented yet."); // TODO: need implementation
+            return new ContinuousSet(membershipFunction.getLeftLimit(), membershipFunction.getRightLimit());
         }
     }
 
     public ClassicSet getAlphaCut(double alpha) {
         ClassicSet support = getSupport();
-
         if (support instanceof DiscreteSet) {
             Set<Double> alphaCut = ((DiscreteSet) support).getElements()
                     .stream()
@@ -57,6 +58,22 @@ public class FuzzySet {
         } else {
             throw new UnsupportedOperationException("Not implemented yet."); // TODO: need implementation
         }
+    }
+
+    public double getDegreeOfFuzziness() {
+        return getSupport().getSize() / universeOfDiscourse.getSize();
+    }
+
+    public FuzzySet complement(FuzzySet otherSet) {
+        return new FuzzySet(new ComplementMembershipFunction(membershipFunction), universeOfDiscourse);
+    }
+
+    public FuzzySet union(FuzzySet otherSet) {
+        return new FuzzySet(new UnionMembershipFunction(membershipFunction, otherSet.membershipFunction), universeOfDiscourse);
+    }
+
+    public FuzzySet intersect(FuzzySet otherSet) {
+        return new FuzzySet(new IntersectMembershipFunction(membershipFunction, otherSet.membershipFunction), universeOfDiscourse);
     }
 
     public boolean isEmpty() {

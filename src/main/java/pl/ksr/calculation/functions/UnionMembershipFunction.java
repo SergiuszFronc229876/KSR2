@@ -16,4 +16,19 @@ public class UnionMembershipFunction extends CombinedMembershipFunction {
     public double getValue(double x) {
         return Math.max(function1.getValue(x), function2.getValue(x));
     }
+
+    @Override
+    public double getAreaFunction() {
+        throw new UnsupportedOperationException("Not implemented yet."); // TODO: need implementation;
+    }
+
+    @Override
+    public double getLeftLimit() {
+        return Math.min(function1.getLeftLimit(), function2.getRightLimit());
+    }
+
+    @Override
+    public double getRightLimit() {
+        return Math.max(function1.getLeftLimit(), function2.getRightLimit());
+    }
 }

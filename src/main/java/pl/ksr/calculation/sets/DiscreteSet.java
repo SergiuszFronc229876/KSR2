@@ -27,6 +27,11 @@ public class DiscreteSet implements ClassicSet {
         return elements.isEmpty();
     }
 
+    @Override
+    public double getSize() {
+        return elements.size();
+    }
+
     public DiscreteSet complement(double beginOfUniverse, double endOfUniverse, double step) {
         Set<Double> complementValues = new HashSet<>();
         for (double value = beginOfUniverse; value <= endOfUniverse; value += step) {
