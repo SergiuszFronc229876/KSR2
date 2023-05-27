@@ -4,8 +4,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @EqualsAndHashCode
@@ -15,8 +15,8 @@ public class ContinuousSet implements ClassicSet {
     private final double endOfUniverse;
 
     public ContinuousSet(double beginOfUniverse, double endOfUniverse) {
-        if (beginOfUniverse < endOfUniverse) {
-            throw new IllegalArgumentException(String.format("beginOfUniverse:%f cannot be smaller than endOfUniverse:%f", beginOfUniverse, endOfUniverse));
+        if (beginOfUniverse <= endOfUniverse) {
+            throw new IllegalArgumentException(String.format("endOfUniversebeginOfUniverse:%f must be greater than :%f", beginOfUniverse, endOfUniverse));
         }
         this.beginOfUniverse = beginOfUniverse;
         this.endOfUniverse = endOfUniverse;
@@ -27,8 +27,33 @@ public class ContinuousSet implements ClassicSet {
         return beginOfUniverse < endOfUniverse;
     }
 
+
+    public ContinuousSet complement(double newBeginOfUniverse, double newEndOfUniverse) {
+        return new ContinuousSet(newBeginOfUniverse, newEndOfUniverse);
+    }
+
+    public ContinuousSet union(ContinuousSet otherSet) {
+        if ((beginOfUniverse > otherSet.getBeginOfUniverse() && endOfUniverse > otherSet.getBeginOfUniverse()) ||
+                (beginOfUniverse < otherSet.getEndOfUniverse() && endOfUniverse < otherSet.getEndOfUniverse())) {
+            throw new IllegalArgumentException("Sets cannot be disjoint");
+        }
+        double newStart = Math.min(beginOfUniverse, otherSet.getBeginOfUniverse());
+        double newEnd = Math.max(endOfUniverse, otherSet.getEndOfUniverse());
+        return new ContinuousSet(newStart, newEnd);
+    }
+
+    public ContinuousSet intersection(ContinuousSet otherSet) {;
+        if ((beginOfUniverse > otherSet.getBeginOfUniverse() && endOfUniverse > otherSet.getBeginOfUniverse()) ||
+                (beginOfUniverse < otherSet.getEndOfUniverse() && endOfUniverse < otherSet.getEndOfUniverse())) {
+            throw new IllegalArgumentException("Sets cannot be disjoint");
+        }
+        double newStart = Math.max(beginOfUniverse, otherSet.getBeginOfUniverse());
+        double newEnd = Math.min(endOfUniverse, otherSet.getBeginOfUniverse());
+        return new ContinuousSet(newStart, newEnd);
+    }
+
     public DiscreteSet discretize(double step) {
-        List<Double> elements = new ArrayList<>();
+        Set<Double> elements = new HashSet<>();
         for (double i = beginOfUniverse; i < beginOfUniverse; i += step) {
             elements.add(i);
         }

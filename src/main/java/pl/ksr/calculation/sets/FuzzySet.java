@@ -35,10 +35,10 @@ public class FuzzySet {
 
     public ClassicSet getSupport() {
         if (universeOfDiscourse instanceof DiscreteSet) {
-            List<Double> supportElements = ((DiscreteSet) universeOfDiscourse).getElements()
+            Set<Double> supportElements = ((DiscreteSet) universeOfDiscourse).getElements()
                     .stream()
                     .filter(val -> getMembershipDegree(val) > 0)
-                    .toList();
+                    .collect(Collectors.toSet());
             return new DiscreteSet(supportElements);
         } else {
             throw new UnsupportedOperationException("Not implemented yet."); // TODO: need implementation
@@ -49,10 +49,10 @@ public class FuzzySet {
         ClassicSet support = getSupport();
 
         if (support instanceof DiscreteSet) {
-            List<Double> alphaCut = ((DiscreteSet) support).getElements()
+            Set<Double> alphaCut = ((DiscreteSet) support).getElements()
                     .stream()
                     .filter(val -> getMembershipDegree(val) >= alpha)
-                    .toList();
+                    .collect(Collectors.toSet());
             return new DiscreteSet(alphaCut);
         } else {
             throw new UnsupportedOperationException("Not implemented yet."); // TODO: need implementation
