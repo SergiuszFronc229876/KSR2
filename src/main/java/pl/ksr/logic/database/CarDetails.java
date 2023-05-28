@@ -1,4 +1,4 @@
-package pl.ksr.database;
+package pl.ksr.logic.database;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

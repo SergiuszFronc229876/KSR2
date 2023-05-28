@@ -1,4 +1,4 @@
-package pl.ksr.calculation.sets;
+package pl.ksr.logic.calculation.sets;
 
 public interface ClassicSet {
     boolean isEmpty();

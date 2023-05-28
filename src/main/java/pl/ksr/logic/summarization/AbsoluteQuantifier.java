@@ -1,6 +1,6 @@
-package pl.ksr.summarization;
+package pl.ksr.logic.summarization;
 
-import pl.ksr.calculation.sets.FuzzySet;
+import pl.ksr.logic.calculation.sets.FuzzySet;
 
 public class AbsoluteQuantifier extends Quantifier {
 

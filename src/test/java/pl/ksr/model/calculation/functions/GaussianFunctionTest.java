@@ -1,7 +1,7 @@
 package pl.ksr.model.calculation.functions;
 
 import org.junit.jupiter.api.Test;
-import pl.ksr.calculation.functions.GaussianFunction;
+import pl.ksr.logic.calculation.functions.GaussianFunction;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

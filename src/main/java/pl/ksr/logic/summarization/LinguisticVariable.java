@@ -1,4 +1,4 @@
-package pl.ksr.summarization;
+package pl.ksr.logic.summarization;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

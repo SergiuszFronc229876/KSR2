@@ -1,4 +1,4 @@
-package pl.ksr.calculation.functions;
+package pl.ksr.logic.calculation.functions;
 
 
 import lombok.EqualsAndHashCode;

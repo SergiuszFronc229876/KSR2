@@ -1,13 +1,13 @@
-package pl.ksr.calculation.sets;
+package pl.ksr.logic.calculation.sets;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
-import pl.ksr.calculation.functions.ComplementMembershipFunction;
-import pl.ksr.calculation.functions.IntersectMembershipFunction;
-import pl.ksr.calculation.functions.MembershipFunction;
-import pl.ksr.calculation.functions.UnionMembershipFunction;
+import pl.ksr.logic.calculation.functions.ComplementMembershipFunction;
+import pl.ksr.logic.calculation.functions.IntersectMembershipFunction;
+import pl.ksr.logic.calculation.functions.MembershipFunction;
+import pl.ksr.logic.calculation.functions.UnionMembershipFunction;
 
 import java.util.Set;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package pl.ksr.database;
+package pl.ksr.logic.database;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
