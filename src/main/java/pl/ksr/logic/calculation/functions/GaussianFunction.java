@@ -12,12 +12,12 @@ import lombok.ToString;
 public class GaussianFunction implements MembershipFunction {
     private final double centreMax;
     private final double standardDeviation;
-    private final double leftMin;
-    private final double rightMin;
+    private final double leftLimit;
+    private final double rightLimit;
 
     @Override
     public double getValue(double x) {
-        if (x < leftMin || x > rightMin) {
+        if (x < leftLimit || x > rightLimit) {
             return 0;
         }
         double exponent = -1 * Math.pow((x - centreMax), 2) / Math.pow(2 * standardDeviation, 2);
@@ -26,11 +26,11 @@ public class GaussianFunction implements MembershipFunction {
 
     public double getAreaFunction() {
         int numSteps = 1000; // Number of steps for numerical integration
-        double stepSize = (rightMin - leftMin) / numSteps; // Size of each step
+        double stepSize = (rightLimit - leftLimit) / numSteps; // Size of each step
         double area = 0.0;
 
         for (int i = 0; i < numSteps; i++) {
-            double x = leftMin + i * stepSize;
+            double x = leftLimit + i * stepSize;
             area += getValue(x) * stepSize; // Accumulate the area under the curve
         }
 
@@ -39,11 +39,11 @@ public class GaussianFunction implements MembershipFunction {
 
     @Override
     public double getLeftLimit() {
-        return leftMin;
+        return leftLimit;
     }
 
     @Override
     public double getRightLimit() {
-        return rightMin;
+        return rightLimit;
     }
 }
