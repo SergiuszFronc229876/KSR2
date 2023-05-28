@@ -9,9 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-@SpringBootApplication
 public class Main extends Application {
-    private ConfigurableApplicationContext applicationContext;
     private Parent root;
 
     public static void main(String[] args) {
@@ -20,11 +18,8 @@ public class Main extends Application {
 
     @Override
     public void init() throws Exception {
-        applicationContext = SpringApplication.run(Main.class);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/mainView.fxml"));
-        fxmlLoader.setControllerFactory(applicationContext::getBean);
         root = fxmlLoader.load();
-        applicationContext.stop();
     }
 
     @Override
@@ -34,10 +29,5 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-    }
-
-    @Override
-    public void stop() {
-        applicationContext.stop();
     }
 }

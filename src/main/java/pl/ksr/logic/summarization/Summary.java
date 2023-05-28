@@ -2,7 +2,7 @@ package pl.ksr.logic.summarization;
 
 import lombok.AllArgsConstructor;
 import pl.ksr.logic.calculation.sets.FuzzySet;
-import pl.ksr.logic.database.CarDetails;
+import pl.ksr.logic.model.CarDetails;
 
 import java.util.HashMap;
 import java.util.List;

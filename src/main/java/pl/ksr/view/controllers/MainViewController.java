@@ -5,31 +5,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import pl.ksr.Main;
-import pl.ksr.logic.database.CarDetails;
-import pl.ksr.logic.database.CarDetailsService;
+import pl.ksr.logic.model.CarDetails;
+import pl.ksr.logic.utils.CarDetailsReader;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-@Component
 public class MainViewController implements Initializable {
 
     @FXML
     public TableView<CarDetails> carDetailsTable;
 
-    private List<CarDetails> carDetailsList;
+    private final List<CarDetails> carDetailsList;
 
-    @Autowired
-    private CarDetailsService carDetailsService;
-
-    public MainViewController(CarDetailsService carDetailsService) {
-        this.carDetailsService = carDetailsService;
-        carDetailsList = carDetailsService.getCarDetailsList();
+    public MainViewController() {
+        carDetailsList = CarDetailsReader.readDataCsv();
     }
 
     @Override

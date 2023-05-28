@@ -1,14 +1,12 @@
-package pl.ksr.logic.database;
+package pl.ksr.logic.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode
 @ToString
 @Entity
