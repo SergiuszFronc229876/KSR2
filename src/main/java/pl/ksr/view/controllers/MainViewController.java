@@ -169,7 +169,7 @@ public class MainViewController implements Initializable {
     private Quantifier checkedQuantifier = null;
 
     private void fillQuantifiersComboBox() {
-        quantifierCB.getItems().addAll(absoluteQuantifiers);
+        quantifierCB.getItems().addAll(predefinedQuantifiers);
     }
 
     private MeasureWeights measureWeights;
