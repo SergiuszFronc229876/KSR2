@@ -199,18 +199,18 @@ public class MainViewController implements Initializable {
         Label luksusowe = new Label("luksusowe", "Cena", new FuzzySet(new TrapezoidalFunction(8000, 10000, 17000, 25000), new ContinuousSet(1, 1_000_000)));
         Label superLuksusowe = new Label("super-luksusowe", "Cena", new FuzzySet(new TrapezoidalFunction(17000, 25000, 80000, 100000), new ContinuousSet(1, 1_000_000)));
         Label sportowe = new Label("sportowe", "Cena", new FuzzySet(new TrapezoidalFunction(80000, 100000, 200000, 250000), new ContinuousSet(1, 1_000_000)));
-        Label superSportowe = new Label("super-sportowe", "Cena", new FuzzySet(new TrapezoidalFunction(200000, 250000, 1000000, 1000000), new ContinuousSet(1, 1_000_000)));
+        Label superSportowe = new Label("super-sportowe", "Cena", new FuzzySet(new TrapezoidalFunction(200000, 250000, 1_000_000, 1_000_000), new ContinuousSet(1, 1_000_000)));
         List<Label> labelsCena = List.of(najtansze, popularne, luksusowe, superLuksusowe, sportowe, superSportowe);
         LinguisticVariable cena = new LinguisticVariable("Cena", labelsCena);
 
         //Przebieg
         Label do_25_000 = new Label("do 25 000 km", "Przebieg", new FuzzySet(new TrapezoidalFunction(0, 0, 10_000, 25_0000), new ContinuousSet(1, 500_000)));
-        Label miedzy_10000_75000 = new Label("między 10 000 km a 75 000 km", "Przebieg", new FuzzySet(new TrapezoidalFunction(10_000, 25_0000, 50_000, 75_0000), new ContinuousSet(1, 500_000)));
-        Label miedzy_50000_125000 = new Label("między 50 000 km a 125 000 km", "Przebieg", new FuzzySet(new TrapezoidalFunction(50_000, 75_0000, 100_000, 125_0000), new ContinuousSet(1, 500_000)));
-        Label miedzy_100000_200000 = new Label("między 100 000 km a 200 000 km", "Przebieg", new FuzzySet(new TrapezoidalFunction(100_000, 125_0000, 175_000, 200_0000), new ContinuousSet(1, 500_000)));
-        Label miedzy_175000_300000 = new Label("między 175 000 km a 300 000 km", "Przebieg", new FuzzySet(new TrapezoidalFunction(175_000, 200_0000, 275_000, 300_0000), new ContinuousSet(1, 500_000)));
-        Label miedzy_275000_375000 = new Label("między 175 000 km a 300 000 km", "Przebieg", new FuzzySet(new TrapezoidalFunction(275_000, 300_0000, 350_000, 375_0000), new ContinuousSet(1, 500_000)));
-        Label ponad_375000 = new Label("między 175 000 km a 300 000 km", "Przebieg", new FuzzySet(new TrapezoidalFunction(350_000, 375_0000, 500_000, 500_000), new ContinuousSet(1, 500_000)));
+        Label miedzy_10000_75000 = new Label("między 10 000 km a 75 000 km", "Przebieg", new FuzzySet(new TrapezoidalFunction(10_000, 25_000, 50_000, 75_000), new ContinuousSet(1, 500_000)));
+        Label miedzy_50000_125000 = new Label("między 50 000 km a 125 000 km", "Przebieg", new FuzzySet(new TrapezoidalFunction(50_000, 75_0000, 100_000, 125_000), new ContinuousSet(1, 500_000)));
+        Label miedzy_100000_200000 = new Label("między 100 000 km a 200 000 km", "Przebieg", new FuzzySet(new TrapezoidalFunction(100_000, 125_000, 175_000, 200_000), new ContinuousSet(1, 500_000)));
+        Label miedzy_175000_300000 = new Label("między 175 000 km a 300 000 km", "Przebieg", new FuzzySet(new TrapezoidalFunction(175_000, 200_000, 275_000, 300_000), new ContinuousSet(1, 500_000)));
+        Label miedzy_275000_375000 = new Label("między 275 000 km a 375 000 km", "Przebieg", new FuzzySet(new TrapezoidalFunction(275_000, 300_000, 350_000, 375_000), new ContinuousSet(1, 500_000)));
+        Label ponad_375000 = new Label("ponad 375 000 km", "Przebieg", new FuzzySet(new TrapezoidalFunction(350_000, 375_000, 500_000, 500_000), new ContinuousSet(1, 500_000)));
         List<Label> labelsPrzebieg = List.of(do_25_000, miedzy_10000_75000, miedzy_50000_125000, miedzy_100000_200000, miedzy_175000_300000, miedzy_275000_375000, ponad_375000);
         LinguisticVariable przebieg = new LinguisticVariable("Przebieg", labelsPrzebieg);
 

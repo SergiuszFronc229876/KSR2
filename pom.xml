@@ -77,7 +77,7 @@
                     <id>debug</id>
                     <configuration>
                         <options>
-                            <option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:8010</option>
+                            <option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:8003</option>
                         </options>
                         <mainClass>pl.ksr.Main</mainClass>
                     </configuration>
