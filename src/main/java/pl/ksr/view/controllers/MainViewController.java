@@ -306,24 +306,14 @@ public class MainViewController implements Initializable {
         predefinedQuantifiers.addAll(relativeQuantifiers);
     }
 
-
-    private List<Quantifier> selectedQuantifiers = new ArrayList<>();
-    private List<Quantifier> selectedQualifiers = new ArrayList<>();
-    private List<Quantifier> selectedSummarizers = new ArrayList<>();
-
     public void generateSummaryBtn_onAction(ActionEvent actionEvent) throws UnsupportedEncodingException {
-        MeasureWeights ourWeights = retrieveWeights();
-        System.out.println(ourWeights.areCorrect());
-        if (!ourWeights.areCorrect()) {
+        measureWeights = retrieveWeights();
+        if (!measureWeights.areCorrect()) {
             throw new RuntimeException("Measure weights are incorrect");
         }
 
         if (quantifierCB.getValue() == null) {
             System.out.println("No quantifier");
-        }
-
-        if (selectedQualifiers.isEmpty()) {
-            selectedQualifiers = List.of();
         }
 
         Set<String> temp1 = new HashSet<>();
