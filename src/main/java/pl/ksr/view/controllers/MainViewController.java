@@ -1,7 +1,6 @@
 package pl.ksr.view.controllers;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -253,9 +252,9 @@ public class MainViewController implements Initializable {
         LinguisticVariable dlugosc = new LinguisticVariable("Długość", labelsDlugosc);
 
         //Zbiornik Paliwa
-        Label mala = new Label("mała", "Pojemność zbiornika paliwa", new FuzzySet(new UnionMembershipFunction(new TrapezoidalFunction(20, 20, 35, 35), new GaussianFunction(35, 4, 35, 77)), new ContinuousSet(20, 160)));
-        Label standardowa = new Label("standardowa", "Pojemność zbiornika paliwa", new FuzzySet(new GaussianFunction(65, 4, 28, 111), new ContinuousSet(20, 160)));
-        Label spora = new Label("spora", "Pojemność zbiornika paliwa", new FuzzySet(new GaussianFunction(108, 4, 53, 108), new ContinuousSet(20, 160)));
+        Label mala = new Label("pozwalająca przejechać około 500 km bez tankowania Volkswagen Golfem 5 z silnikiem o pojemności 1400 cm3", "Pojemność zbiornika paliwa", new FuzzySet(new UnionMembershipFunction(new TrapezoidalFunction(20, 20, 35, 35), new GaussianFunction(35, 4, 35, 77)), new ContinuousSet(20, 160)));
+        Label standardowa = new Label("pozwalająca przejechać około 1000 km bez tankowania Volkswagen Golfem 5 z silnikiem o pojemności 1400 cm3", "Pojemność zbiornika paliwa", new FuzzySet(new GaussianFunction(65, 4, 28, 111), new ContinuousSet(20, 160)));
+        Label spora = new Label("pozwalająca przejechać około 1500 km bez tankowania Volkswagen Golfem 5 z silnikiem o pojemności 1400 cm3", "Pojemność zbiornika paliwa", new FuzzySet(new GaussianFunction(108, 4, 53, 108), new ContinuousSet(20, 160)));
         List<Label> labelsZbiornik = List.of(mala, standardowa, spora);
         LinguisticVariable pojemnoscZbiornikaPaliwa = new LinguisticVariable("Pojemność zbiornika paliwa", labelsZbiornik);
 
@@ -267,18 +266,18 @@ public class MainViewController implements Initializable {
         LinguisticVariable rozstawOsi = new LinguisticVariable("Rozstaw osi", labelsRozstawOsi);
 
         //Moment obrotowy
-        Label niski = new Label("niski", "Moment obrotowy", new FuzzySet(new TrapezoidalFunction(100, 100, 150, 210), new ContinuousSet(100, 1100)));
-        Label normalny = new Label("normalny", "Moment obrotowy", new FuzzySet(new TrapezoidalFunction(150, 210, 300, 380), new ContinuousSet(100, 1100)));
-        Label wysoki = new Label("wysoki", "Moment obrotowy", new FuzzySet(new TrapezoidalFunction(300, 380, 430, 510), new ContinuousSet(100, 1100)));
+        Label niski = new Label("niski", "Moment obrotowy", new FuzzySet(new TrapezoidalFunction(100, 100, 180, 230), new ContinuousSet(100, 1100)));
+        Label normalny = new Label("normalny", "Moment obrotowy", new FuzzySet(new TriangularFunction(150, 255, 380), new ContinuousSet(100, 1100)));
+        Label wysoki = new Label("wysoki", "Moment obrotowy", new FuzzySet(new TriangularFunction(260, 365, 470), new ContinuousSet(100, 1100)));
         Label chipTuning = new Label("chip tuning", "Moment obrotowy", new FuzzySet(new TrapezoidalFunction(430, 510, 1100, 1100), new ContinuousSet(100, 1100)));
         List<Label> labelsMomentObrotowy = List.of(niski, normalny, wysoki, chipTuning);
         LinguisticVariable momentObrotowy = new LinguisticVariable("Moment obrotowy", labelsMomentObrotowy);
 
         //Szerokosc
-        Label waski = new Label("wąski", "Szerokość", new FuzzySet(new TrapezoidalFunction(1.50, 1.50, 1.60, 1.70), new ContinuousSet(1.50, 2.60)));
-        Label zwyczajny = new Label("zwyczajny", "Szerokość", new FuzzySet(new TrapezoidalFunction(1.60, 1.70, 1.80, 2.00), new ContinuousSet(1.50, 2.60)));
-        Label szeroki = new Label("szeroki", "Szerokość", new FuzzySet(new TrapezoidalFunction(1.80, 2.00, 2.20, 2.30), new ContinuousSet(1.50, 2.60)));
-        Label bardzoSzeroki = new Label("bardzo szeroki", "Szerokość", new FuzzySet(new TrapezoidalFunction(2.20, 2.30, 2.60, 2.60), new ContinuousSet(1.50, 2.60)));
+        Label waski = new Label("węższy od Volkswagena Passata B5", "Szerokość", new FuzzySet(new TrapezoidalFunction(1.50, 1.50, 1.60, 1.70), new ContinuousSet(1.50, 2.60)));
+        Label zwyczajny = new Label("szerokość Volkswagena Passata B5", "Szerokość", new FuzzySet(new TrapezoidalFunction(1.60, 1.70, 1.80, 2.00), new ContinuousSet(1.50, 2.60)));
+        Label szeroki = new Label("szerszy od Volkswagena Passata B5 o 20 cm", "Szerokość", new FuzzySet(new TrapezoidalFunction(1.80, 2.00, 2.20, 2.30), new ContinuousSet(1.50, 2.60)));
+        Label bardzoSzeroki = new Label("szerszy od Volkswagena Passata B5 o 60 cm", "Szerokość", new FuzzySet(new TrapezoidalFunction(2.20, 2.30, 2.60, 2.60), new ContinuousSet(1.50, 2.60)));
         List<Label> labelsSzerokosc = List.of(waski, zwyczajny, szeroki, bardzoSzeroki);
         LinguisticVariable szerokosc = new LinguisticVariable("Szerokość", labelsSzerokosc);
 
