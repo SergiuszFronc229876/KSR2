@@ -1,22 +1,39 @@
 package pl.ksr.logic.summarization;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import pl.ksr.logic.calculation.sets.FuzzySet;
 import pl.ksr.logic.model.CarDetails;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @AllArgsConstructor
+@Getter
 public class Summary {
     private MeasureWeights weights;
     private List<Label> qualifiers;
     private Quantifier quantifier;
     private List<Label> summarizers;
-    private final List<CarDetails> cars;
-    private final List<CarDetails> cars2;
+    private List<CarDetails> cars;
+    private List<CarDetails> cars2;
     private boolean isFirstForm;
+
+    public Summary(MeasureWeights weights, List<Label> qualifiers, Quantifier quantifier, List<Label> summarizers, List<CarDetails> cars) {
+        this.weights = weights;
+        this.quantifier = quantifier;
+        this.summarizers = summarizers;
+        this.cars = cars;
+
+        if (qualifiers.size() == 0) {
+            isFirstForm = true;
+        } else {
+            this.isFirstForm = false;
+            this.qualifiers = qualifiers;
+        }
+    }
 
     public Map<String, Double> calculateMeasures() {
         Map<String, Double> measures = new HashMap<>();
@@ -140,11 +157,13 @@ public class Summary {
 
     public double getDegreeOfQualifierImprecision_T9() {
         double multiply = 1.0;
-        for (Label qualifier : qualifiers) {
-            multiply = multiply * qualifier.getFuzzySet().getDegreeOfFuzziness();
+        if (qualifiers != null) {
+            for (Label qualifier : qualifiers) {
+                multiply = multiply * qualifier.getFuzzySet().getDegreeOfFuzziness();
+            }
         }
         if (!isFirstForm) {
-            double res = Math.pow(multiply, (double) 1 / qualifiers.size());
+            double res = Math.pow(multiply, (double) 1 / (qualifiers != null ? qualifiers.size() : 1));
             return 1.0 - res;
         } else {
             return 0.0;
@@ -153,12 +172,13 @@ public class Summary {
 
     public double getDegreeOfQualifierCardinality_T10() {
         double multiply = 1;
-        for (Label qualifier : qualifiers) {
-            multiply = multiply * (qualifier.getFuzzySet().getCardinality() / qualifier.getFuzzySet().getUniverseOfDiscourse().getSize());
-
+        if (qualifiers != null) {
+            for (Label qualifier : qualifiers) {
+                multiply = multiply * (qualifier.getFuzzySet().getCardinality() / qualifier.getFuzzySet().getUniverseOfDiscourse().getSize());
+            }
         }
         if (!isFirstForm) {
-            multiply = Math.pow(multiply, (double) 1 / qualifiers.size());
+            multiply = Math.pow(multiply, (double) 1 / (qualifiers != null ? qualifiers.size() : 1));
             return 1.0 - multiply;
         } else {
             return 0.0;
@@ -170,6 +190,9 @@ public class Summary {
     }
 
     private double and(List<Label> labels, CarDetails car) {
+        if (labels == null) {
+            return 1;
+        }
         double min = 1.0;
         for (Label label : labels) {
             double degreeOfMembership = label.getFuzzySet().getMembershipDegree(fieldForLabel(label, car));
@@ -181,7 +204,7 @@ public class Summary {
     }
 
     private double fieldForLabel(Label l, CarDetails c) {
-        return switch (l.getLinguisticVariable()) {
+        return switch (l.getLinguisticVariableName()) {
             case "Cena" -> c.getPrice();
             case "Przebieg" -> c.getMileage();
             case "Moc silnika" -> c.getHorsepower();

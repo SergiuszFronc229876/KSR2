@@ -8,7 +8,7 @@ import pl.ksr.logic.calculation.sets.FuzzySet;
 @Getter
 public class Label {
     private String name;
-    private String linguisticVariable;
+    private String linguisticVariableName;
     private FuzzySet fuzzySet;
 
     public double getMembership(Double x) {

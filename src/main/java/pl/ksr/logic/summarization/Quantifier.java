@@ -9,4 +9,9 @@ import pl.ksr.logic.calculation.sets.FuzzySet;
 public abstract class Quantifier {
     private String name;
     private FuzzySet fuzzySet;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
