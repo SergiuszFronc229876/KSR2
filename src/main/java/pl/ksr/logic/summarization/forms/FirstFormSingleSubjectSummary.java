@@ -131,7 +131,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
 
     @Override
     public double getLengthOfQualifier_T11() {
-        return 0.0;
+        return 1.0;
     }
 
     @Override
