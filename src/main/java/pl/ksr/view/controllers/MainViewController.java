@@ -17,6 +17,8 @@ import pl.ksr.logic.calculation.sets.FuzzySet;
 import pl.ksr.logic.model.CarDetails;
 import pl.ksr.logic.summarization.Label;
 import pl.ksr.logic.summarization.*;
+import pl.ksr.logic.summarization.forms.FirstFormSingleSubjectSummary;
+import pl.ksr.logic.summarization.forms.SecondFormSingleSubjectSummary;
 import pl.ksr.logic.utils.CarDetailsReader;
 
 import java.io.PrintStream;
@@ -416,20 +418,20 @@ public class MainViewController implements Initializable {
 //        );
 
         System.setOut(new PrintStream(System.out, true, "UTF-8"));
-        summaries.forEach(summary -> System.out.println(String.format("%s T:%f T1: %f T2: %f T3: %f T4: %f T5: %f T6: %f T7: %f T8: %f T9: %f T10: %f T11: %f",
-                summaryToText(summary),
-                summary.calculateQuality(),
-                summary.getDegreeOfTruth_T1(),
-                summary.getDegreeOfImprecision_T2(),
-                summary.getDegreeOfCovering_T3(),
-                summary.getDegreeOfAppropriateness_T4(),
-                summary.getDegreeOfSummary_T5(),
-                summary.getDegreeOfQuantifierImprecision_T6(),
-                summary.getDegreeOfQuantifierCardinality_T7(),
-                summary.getDegreeOfOfSummarizerCardinality_T8(),
-                summary.getDegreeOfQualifierImprecision_T9(),
-                summary.getDegreeOfQualifierCardinality_T10(),
-                summary.getLengthOfQualifier_T11())));
+        summaries.forEach(singleSubjectSummary -> System.out.println(String.format("%s T:%f T1: %f T2: %f T3: %f T4: %f T5: %f T6: %f T7: %f T8: %f T9: %f T10: %f T11: %f",
+                summaryToText(singleSubjectSummary),
+                singleSubjectSummary.calculateQuality(),
+                singleSubjectSummary.getDegreeOfTruth_T1(),
+                singleSubjectSummary.getDegreeOfImprecision_T2(),
+                singleSubjectSummary.getDegreeOfCovering_T3(),
+                singleSubjectSummary.getDegreeOfAppropriateness_T4(),
+                singleSubjectSummary.getDegreeOfSummary_T5(),
+                singleSubjectSummary.getDegreeOfQuantifierImprecision_T6(),
+                singleSubjectSummary.getDegreeOfQuantifierCardinality_T7(),
+                singleSubjectSummary.getDegreeOfOfSummarizerCardinality_T8(),
+                singleSubjectSummary.getDegreeOfQualifierImprecision_T9(),
+                singleSubjectSummary.getDegreeOfQualifierCardinality_T10(),
+                singleSubjectSummary.getLengthOfQualifier_T11())));
 
 //        // Create a list of Summary objects
 //        ObservableList<Summary> summaryList = FXCollections.observableArrayList();
@@ -444,7 +446,7 @@ public class MainViewController implements Initializable {
         return Math.round(val * 100.0) / 100.0;
     }
 
-    private List<Summary> summaries = new ArrayList<>();
+    private List<SingleSubjectSummary> summaries = new ArrayList<>();
 
     private void generateSummariesFirstForm(List<Quantifier> quantifiers, List<Label> qualifiers,
                                             List<Label> summarizers) {
@@ -461,11 +463,17 @@ public class MainViewController implements Initializable {
                         if (quantifier instanceof AbsoluteQuantifier && qualifiers.size() > 0) {
                             continue;
                         }
-                        Summary summary = new Summary(measureWeights, qualifiers, quantifier, tempSumList, carDetailsList);
-                        summaries.add(summary);
+                        SingleSubjectSummary singleSubjectSummary;
+                        if (qualifiers.size() > 0) {
+                            singleSubjectSummary = new FirstFormSingleSubjectSummary(measureWeights, quantifier, tempSumList, carDetailsList);
+                        } else {
+                            singleSubjectSummary = new SecondFormSingleSubjectSummary(measureWeights, quantifier, qualifiers, tempSumList, carDetailsList);
+                        }
+                        summaries.add(singleSubjectSummary);
                     }
                 }
             }
+
             if (i == 2 && summarizers.size() == 3) {
                 List<Label> tempSumList = new ArrayList<>();
                 tempSumList.add(summarizers.get(0));
@@ -474,8 +482,13 @@ public class MainViewController implements Initializable {
                     if (quantifier instanceof AbsoluteQuantifier && qualifiers.size() > 0) {
                         continue;
                     }
-                    Summary summary = new Summary(measureWeights, qualifiers, quantifier, tempSumList, carDetailsList);
-                    summaries.add(summary);
+                    SingleSubjectSummary singleSubjectSummary;
+                    if (qualifiers.size() > 0) {
+                        singleSubjectSummary = new FirstFormSingleSubjectSummary(measureWeights, quantifier, tempSumList, carDetailsList);
+                    } else {
+                        singleSubjectSummary = new SecondFormSingleSubjectSummary(measureWeights, quantifier, qualifiers, tempSumList, carDetailsList);
+                    }
+                    summaries.add(singleSubjectSummary);
                 }
             }
         }
@@ -515,30 +528,8 @@ public class MainViewController implements Initializable {
         }
     }
 
-    public String summaryToText(Summary summary) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(summary.getQuantifier().getName().toUpperCase(Locale.ROOT)).append(" obiektów ");
-        if (!summary.isFirstForm()) {
-            sb.append("będąca/mająca ");
-            for (int i = 0; i < summary.getQualifiers().size(); i++) {
-                Label qualifier = summary.getQualifiers().get(i);
-                sb.append(qualifier.getName().toUpperCase(Locale.ROOT)).append(" ")
-                        .append(qualifier.getLinguisticVariableName().toLowerCase(Locale.ROOT));
-                if (i + 1 < summary.getQualifiers().size()) {
-                    sb.append(" i ");
-                }
-            }
-        }
-        sb.append(" ma ");
-        for (int i = 0; i < summary.getSummarizers().size(); i++) {
-            Label summarizer = summary.getSummarizers().get(i);
-            sb.append(summarizer.getName().toUpperCase(Locale.ROOT)).append(" ")
-                    .append(summarizer.getLinguisticVariableName().toLowerCase(Locale.ROOT));
-            if (i + 1 < summary.getSummarizers().size()) {
-                sb.append(" i ");
-            }
-        }
-        return sb.toString();
+    public String summaryToText(SingleSubjectSummary singleSubjectSummary) {
+        return singleSubjectSummary.printSummary();
     }
 
     private Label findLabel(String variableName, String labelName) {
