@@ -9,6 +9,7 @@ import pl.ksr.logic.calculation.functions.IntersectMembershipFunction;
 import pl.ksr.logic.calculation.functions.MembershipFunction;
 import pl.ksr.logic.calculation.functions.UnionMembershipFunction;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,15 +25,10 @@ public class FuzzySet {
         return membershipFunction.getValue(x);
     }
 
-    public double getCardinality() {
-        if (universeOfDiscourse instanceof DiscreteSet) {
-            return ((DiscreteSet) universeOfDiscourse).getElements()
-                    .stream()
-                    .mapToDouble(this::getMembershipDegree)
-                    .sum();
-        } else {
-            return membershipFunction.getAreaFunction();
-        }
+    public double getCardinality(List<Double> values) {
+        return values.stream()
+                .mapToDouble(this::getMembershipDegree)
+                .sum();
     }
 
     public ClassicSet getSupport() {

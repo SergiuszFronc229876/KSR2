@@ -105,7 +105,7 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
 
     public double getDegreeOfQuantifierCardinality_T7() {
         FuzzySet fs = quantifier.getFuzzySet();
-        double measure = fs.getCardinality();
+        double measure = quantifier.getCardinality();
         if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
             return 1.0 - (measure / cars.size());
         } else {
@@ -116,7 +116,8 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
     public double getDegreeOfSummarizerCardinality_T8() {
         double multiply = 1.0;
         for (Label summarizer : summarizers) {
-            multiply = multiply * (summarizer.getFuzzySet().getCardinality() / summarizer.getFuzzySet().getUniverseOfDiscourse().getSize());
+            multiply = multiply * (summarizer.getFuzzySet().getCardinality(cars.stream()
+                    .map(c -> fieldForLabel(summarizer, c)).toList()) / summarizer.getFuzzySet().getUniverseOfDiscourse().getSize());
         }
         multiply = Math.pow(multiply, (double) 1 / summarizers.size());
         return 1.0 - multiply;
@@ -137,7 +138,8 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
         double multiply = 1;
         if (qualifiers != null) {
             for (Label qualifier : qualifiers) {
-                multiply = multiply * (qualifier.getFuzzySet().getCardinality() / qualifier.getFuzzySet().getUniverseOfDiscourse().getSize());
+                multiply = multiply * (qualifier.getFuzzySet().getCardinality(cars.stream()
+                        .map(c -> fieldForLabel(qualifier, c)).toList()) / qualifier.getFuzzySet().getUniverseOfDiscourse().getSize());
             }
         }
 
