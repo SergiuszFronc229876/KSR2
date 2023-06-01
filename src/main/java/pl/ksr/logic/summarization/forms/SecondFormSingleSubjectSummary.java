@@ -9,11 +9,11 @@ import java.util.Locale;
 import java.util.Map;
 
 public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
-    private MeasureWeights weights;
-    private Quantifier quantifier;
-    private List<Label> qualifiers;
-    private List<Label> summarizers;
-    private List<CarDetails> cars;
+    private final MeasureWeights weights;
+    private final Quantifier quantifier;
+    private final List<Label> qualifiers;
+    private final List<Label> summarizers;
+    private final List<CarDetails> cars;
 
     public SecondFormSingleSubjectSummary(MeasureWeights weights, Quantifier quantifier, List<Label> qualifiers, List<Label> summarizers, List<CarDetails> cars) {
         this.weights = weights;
@@ -21,7 +21,6 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
         this.qualifiers = qualifiers;
         this.summarizers = summarizers;
         this.cars = cars;
-
     }
 
     @Override
@@ -114,7 +113,7 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
         }
     }
 
-    public double getDegreeOfOfSummarizerCardinality_T8() {
+    public double getDegreeOfSummarizerCardinality_T8() {
         double multiply = 1.0;
         for (Label summarizer : summarizers) {
             multiply = multiply * (summarizer.getFuzzySet().getCardinality() / summarizer.getFuzzySet().getUniverseOfDiscourse().getSize());
@@ -152,7 +151,7 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
     }
 
     @Override
-    public String printSummary() {
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(quantifier.getName().toUpperCase(Locale.ROOT)).append(" samochodów jest/ma ");
         sb.append("będąca/mająca ");

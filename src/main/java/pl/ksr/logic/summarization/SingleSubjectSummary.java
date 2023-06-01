@@ -16,7 +16,7 @@ public interface SingleSubjectSummary {
         measures.put("T5", getDegreeOfSummary_T5());
         measures.put("T6", getDegreeOfQuantifierImprecision_T6());
         measures.put("T7", getDegreeOfQuantifierCardinality_T7());
-        measures.put("T8", getDegreeOfOfSummarizerCardinality_T8());
+        measures.put("T8", getDegreeOfSummarizerCardinality_T8());
         measures.put("T9", getDegreeOfQualifierImprecision_T9());
         measures.put("T10", getDegreeOfQualifierCardinality_T10());
         measures.put("T11", getLengthOfQualifier_T11());
@@ -38,7 +38,7 @@ public interface SingleSubjectSummary {
 
     double getDegreeOfQuantifierCardinality_T7();
 
-    double getDegreeOfOfSummarizerCardinality_T8();
+    double getDegreeOfSummarizerCardinality_T8();
 
     double getDegreeOfQualifierImprecision_T9();
 
@@ -75,5 +75,5 @@ public interface SingleSubjectSummary {
         }
         return min;
     }
-    String printSummary();
+    String toString();
 }

@@ -9,10 +9,10 @@ import java.util.Locale;
 import java.util.Map;
 
 public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
-    private MeasureWeights weights;
-    private Quantifier quantifier;
-    private List<Label> summarizers;
-    private List<CarDetails> cars;
+    private final MeasureWeights weights;
+    private final Quantifier quantifier;
+    private final List<Label> summarizers;
+    private final List<CarDetails> cars;
 
     public FirstFormSingleSubjectSummary(MeasureWeights weights, Quantifier quantifier, List<Label> summarizers, List<CarDetails> cars) {
         this.weights = weights;
@@ -32,7 +32,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
     @Override
     public double getDegreeOfTruth_T1() {
         double r = 0.0;
-        double m = 0.0;
+        double m;
         for (CarDetails c : cars) {
             r += and(summarizers, c);
         }
@@ -110,7 +110,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
     }
 
     @Override
-    public double getDegreeOfOfSummarizerCardinality_T8() {
+    public double getDegreeOfSummarizerCardinality_T8() {
         double multiply = 1.0;
         for (Label summarizer : summarizers) {
             multiply = multiply * (summarizer.getFuzzySet().getCardinality() / summarizer.getFuzzySet().getUniverseOfDiscourse().getSize());
@@ -135,7 +135,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
     }
 
     @Override
-    public String printSummary() {
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(quantifier.getName().toUpperCase(Locale.ROOT)).append(" samochodów jest/ma ");
         for (int i = 0; i < summarizers.size(); i++) {
@@ -148,6 +148,4 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
         }
         return sb.toString();
     }
-
-
 }
