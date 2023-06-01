@@ -1,17 +1,12 @@
 package pl.ksr.logic.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.*;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-@Entity
 public class CarDetails {
-    @Id
     private long id;
     private String franchiseName;
     private String modelName;
