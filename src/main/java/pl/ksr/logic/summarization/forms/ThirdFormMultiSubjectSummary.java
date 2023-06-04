@@ -40,7 +40,7 @@ public class ThirdFormMultiSubjectSummary implements MultiSubjectSummary {
         StringBuilder sb = new StringBuilder();
         sb.append(quantifier.getName().toUpperCase(Locale.ROOT))
                 .append(" samochodów z silnikiem " + subjectName1)
-                .append(" które są ");
+                .append(" które są/mają ");
         for (int i = 0; i < qualifiers.size(); i++) {
             Label qualifier = qualifiers.get(i);
             sb.append(qualifier.getName().toUpperCase(Locale.ROOT)).append(" ").append(qualifier.getLinguisticVariableName().toLowerCase(Locale.ROOT));

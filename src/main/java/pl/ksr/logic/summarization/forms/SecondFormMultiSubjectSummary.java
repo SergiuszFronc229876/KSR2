@@ -42,7 +42,7 @@ public class SecondFormMultiSubjectSummary implements MultiSubjectSummary {
                 .append(" samochodów z silnikiem " + subjectName1)
                 .append(" w porównaniu do tych ")
                 .append(" samochodów z silnikiem " + subjectName2)
-                .append(" które są ");
+                .append(" które są/mają ");
         for (int i = 0; i < qualifiers.size(); i++) {
             Label qualifier = qualifiers.get(i);
             sb.append(qualifier.getName().toUpperCase(Locale.ROOT)).append(" ").append(qualifier.getLinguisticVariableName().toLowerCase(Locale.ROOT));
