@@ -4,7 +4,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -23,7 +22,6 @@ import pl.ksr.logic.summarization.forms.FirstFormSingleSubjectSummary;
 import pl.ksr.logic.summarization.forms.SecondFormSingleSubjectSummary;
 import pl.ksr.logic.utils.CarDetailsReader;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.*;
@@ -63,7 +61,6 @@ public class MainViewController implements Initializable {
     private List<CarDetails> carDetailsList;
     private MeasureWeights measureWeights;
     private List<LinguisticVariable> linguisticVariables;
-    private List<AbsoluteQuantifier> absoluteQuantifiers;
     private List<RelativeQuantifier> relativeQuantifiers;
     private List<Quantifier> predefinedQuantifiers;
     private final List<SingleSubjectSummary> summaries = new ArrayList<>();
@@ -297,14 +294,14 @@ public class MainViewController implements Initializable {
         AbsoluteQuantifier miedzy3000_7000 = new AbsoluteQuantifier("Między 3000 a 7000", new FuzzySet(new TrapezoidalFunction(3000, 4000, 6000, 7000), new ContinuousSet(0, 10_000)));
         AbsoluteQuantifier blisko7000 = new AbsoluteQuantifier("Blisko 7000", new FuzzySet(new TrapezoidalFunction(6000, 7000, 7500, 8500), new ContinuousSet(0, 10_000)));
         AbsoluteQuantifier ponad8000 = new AbsoluteQuantifier("Ponad 8000", new FuzzySet(new TrapezoidalFunction(7500, 8000, 10000, 10000), new ContinuousSet(0, 10_000)));
-        absoluteQuantifiers = List.of(mniejNiz2000, okolo3000, miedzy3000_7000, blisko7000, ponad8000);
+        List<AbsoluteQuantifier> absoluteQuantifiers = List.of(mniejNiz2000, okolo3000, miedzy3000_7000, blisko7000, ponad8000);
 
         predefinedQuantifiers = new ArrayList<>();
         predefinedQuantifiers.addAll(absoluteQuantifiers);
         predefinedQuantifiers.addAll(relativeQuantifiers);
     }
 
-    public void generateSummaryBtn_onAction(ActionEvent actionEvent) throws UnsupportedEncodingException {
+    public void generateSummaryBtn_onAction() {
         measureWeights = retrieveWeights();
         if (!measureWeights.areCorrect()) {
             throw new RuntimeException("Measure weights are incorrect");
@@ -330,10 +327,9 @@ public class MainViewController implements Initializable {
             summarizers.add(findLabel(names[0], names[1]));
         }
 
-        if (qualifiers.size() == 0) {
-            List<Quantifier> quantifiers = new ArrayList<>(absoluteQuantifiers);
-            generateSummariesFirstForm(quantifiers, qualifiers, summarizers);
-        } else {
+        if (qualifiers.size() == 0) { // First form.
+            generateSummariesFirstForm(predefinedQuantifiers, qualifiers, summarizers);
+        } else { // Second form.
             List<Quantifier> quantifiers = new ArrayList<>(relativeQuantifiers);
             generateSummariesSecondForm(quantifiers, qualifiers, summarizers);
         }
