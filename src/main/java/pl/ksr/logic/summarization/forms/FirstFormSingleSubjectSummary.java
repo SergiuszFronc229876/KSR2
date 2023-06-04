@@ -24,9 +24,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
     @Override
     public double getGoodnessOfSummary() {
         Map<String, Double> measures = calculateMeasures();
-        return measures.entrySet().stream()
-                .mapToDouble(e -> e.getValue() * weights.getWeights().get(e.getKey()))
-                .sum();
+        return measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.getWeights().get(e.getKey())).sum();
     }
 
     @Override
@@ -46,7 +44,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
     public double getDegreeOfImprecision_T2() {
         double multiply = 1.0;
         for (Label summarizer : summarizers) {
-            multiply = multiply * summarizer.getFuzzySet().getDegreeOfFuzziness();
+            multiply = multiply * summarizer.getFuzzySet().getDegreeOfFuzziness(cars.stream().map(c -> fieldForLabel(summarizer, c)).toList());
         }
         double res = Math.pow(multiply, 1.0 / summarizers.size());
         return 1.0 - res;
@@ -100,7 +98,6 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
 
     @Override
     public double getDegreeOfQuantifierCardinality_T7() {
-        FuzzySet fs = quantifier.getFuzzySet();
         double measure = quantifier.getFuzzySet().getCardinality();
         if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
             return 1.0 - (measure / cars.size());
@@ -113,8 +110,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
     public double getDegreeOfSummarizerCardinality_T8() {
         double multiply = 1.0;
         for (Label summarizer : summarizers) {
-            multiply = multiply * (summarizer.getFuzzySet().getCardinality(cars.stream()
-                    .map(c -> fieldForLabel(summarizer, c)).toList()) / cars.size());
+            multiply = multiply * (summarizer.getFuzzySet().getCardinality(cars.stream().map(c -> fieldForLabel(summarizer, c)).toList()) / cars.size());
         }
         multiply = Math.pow(multiply, 1.0 / summarizers.size());
         return 1.0 - multiply;
@@ -141,8 +137,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
         sb.append(quantifier.getName().toUpperCase(Locale.ROOT)).append(" samochodów jest/ma ");
         for (int i = 0; i < summarizers.size(); i++) {
             Label summarizer = summarizers.get(i);
-            sb.append(summarizer.getName().toUpperCase(Locale.ROOT)).append(" ")
-                    .append(summarizer.getLinguisticVariableName().toLowerCase(Locale.ROOT));
+            sb.append(summarizer.getName().toUpperCase(Locale.ROOT)).append(" ").append(summarizer.getLinguisticVariableName().toLowerCase(Locale.ROOT));
             if (i + 1 < summarizers.size()) {
                 sb.append(" i ");
             }
