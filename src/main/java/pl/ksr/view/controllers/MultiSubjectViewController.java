@@ -16,14 +16,19 @@ import pl.ksr.logic.calculation.functions.UnionMembershipFunction;
 import pl.ksr.logic.calculation.sets.ContinuousSet;
 import pl.ksr.logic.calculation.sets.FuzzySet;
 import pl.ksr.logic.model.CarDetails;
-import pl.ksr.logic.summarization.*;
 import pl.ksr.logic.summarization.Label;
+import pl.ksr.logic.summarization.*;
+import pl.ksr.logic.summarization.forms.FirstFormMultiSubjectSummary;
+import pl.ksr.logic.summarization.forms.FourthFormMultiSubjectSummary;
+import pl.ksr.logic.summarization.forms.SecondFormMultiSubjectSummary;
+import pl.ksr.logic.summarization.forms.ThirdFormMultiSubjectSummary;
 import pl.ksr.logic.utils.CarDetailsReader;
 
 import java.net.URL;
 import java.util.*;
 
 public class MultiSubjectViewController implements Initializable {
+    private final List<MultiSubjectSummary> summaries = new ArrayList<>();
     @FXML
     private ComboBox<String> firstSubject_CB;
     @FXML
@@ -34,12 +39,10 @@ public class MultiSubjectViewController implements Initializable {
     private TreeView<String> qualifiersTreeView;
     @FXML
     private TableView<MultiSubjectSummary> summaryTable;
-
     private List<CarDetails> carDetailsList;
     private List<LinguisticVariable> linguisticVariables;
     private List<RelativeQuantifier> relativeQuantifiers;
     private List<Quantifier> predefinedQuantifiers;
-    private final List<MultiSubjectSummary> summaries = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -275,85 +278,85 @@ public class MultiSubjectViewController implements Initializable {
 
     private void generateSummariesMultiObject(List<Quantifier> quantifiers, List<Label> qualifiers,
                                               List<Label> summarizers) {
-//        List<CarDetails> objects1;
-//        List<CarDetails> objects2;
-//
-//        if (firstSubject_CB.getValue().equals("Diesel")) {
-//            objects1 = carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Benzyna")).toList();
-//            objects2 = carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Diesel")).toList();
-//        } else {
-//            objects1 = carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Diesel")).toList();
-//            objects2 = carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Benzyna")).toList();
-//        }
-//
-//        List<Label> emptyQualifiers = new ArrayList<>();
-//        for (int i = 1; i < summarizers.size() + 1; i++) {
-//            for (int j = 0; j < summarizers.size(); j++) {
-//                List<Label> tempSumList = new ArrayList<>();
-//                if (j + i - 1 < summarizers.size()) {
-//                    for (int k = j; k < j + i; k++) {
-//                        tempSumList.add(summarizers.get(k));
-//                    }
-//                }
-//                if (tempSumList.size() == i) {
-//                    MultiSubjectSummary summary2 = new LinguisticSummary<>(quantifiers.get(0), emptyQualifiers, tempSumList, objects1, objects2, 4);
-//                    summaries.add(summary2);
-//                    for (Quantifier quantifier : quantifiers) {
-//                        if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
-//                            continue;
-//                        }
-//                        MultiSubjectSummary summary1 = new LinguisticSummary(quantifier, emptyQualifiers, tempSumList, objects1, objects2, 1);
-//                        summaries.add(summary1);
-//                        generateSecondAndThirdForm(quantifier, qualifiers, tempSumList, objects1, objects2);
-//                    }
-//                }
-//            }
-//            if (i == 2 && summarizers.size() == 3) {
-//                List<Label> tempSumList = new ArrayList<>();
-//                tempSumList.add(summarizers.get(0));
-//                tempSumList.add(summarizers.get(2));
-//                MultiSubjectSummary summary2 = new LinguisticSummary(quantifiers.get(0), emptyQualifiers, tempSumList, objects1, objects2, 4);
-//                summaries.add(summary2);
-//                for (Quantifier quantifier : quantifiers) {
-//                    if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
-//                        continue;
-//                    }
-//                    MultiSubjectSummary summary1 = new LinguisticSummary(quantifier, emptyQualifiers, tempSumList, objects1, objects2, 1);
-//                    summaries.add(summary1);
-//                    generateSecondAndThirdForm(quantifier, qualifiers, tempSumList, objects1, objects2);
-//                }
-//            }
-//        }
+        List<CarDetails> objects1;
+        List<CarDetails> objects2;
+
+        if (firstSubject_CB.getValue().equals("Diesel")) {
+            objects1 = carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Benzyna")).toList();
+            objects2 = carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Diesel")).toList();
+        } else {
+            objects1 = carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Diesel")).toList();
+            objects2 = carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Benzyna")).toList();
+        }
+
+        List<Label> emptyQualifiers = new ArrayList<>();
+        for (int i = 1; i < summarizers.size() + 1; i++) {
+            for (int j = 0; j < summarizers.size(); j++) {
+                List<Label> tempSumList = new ArrayList<>();
+                if (j + i - 1 < summarizers.size()) {
+                    for (int k = j; k < j + i; k++) {
+                        tempSumList.add(summarizers.get(k));
+                    }
+                }
+                if (tempSumList.size() == i) {
+                    MultiSubjectSummary summary2 = new FourthFormMultiSubjectSummary(quantifiers.get(0), tempSumList, objects1, objects2);
+                    summaries.add(summary2);
+                    for (Quantifier quantifier : quantifiers) {
+                        if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
+                            continue;
+                        }
+                        MultiSubjectSummary summary1 = new FirstFormMultiSubjectSummary(quantifier, tempSumList, objects1, objects2);
+                        summaries.add(summary1);
+                        generateSecondAndThirdForm(quantifier, qualifiers, tempSumList, objects1, objects2);
+                    }
+                }
+            }
+            if (i == 2 && summarizers.size() == 3) {
+                List<Label> tempSumList = new ArrayList<>();
+                tempSumList.add(summarizers.get(0));
+                tempSumList.add(summarizers.get(2));
+                MultiSubjectSummary summary2 = new FourthFormMultiSubjectSummary(quantifiers.get(0), tempSumList, objects1, objects2);
+                summaries.add(summary2);
+                for (Quantifier quantifier : quantifiers) {
+                    if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
+                        continue;
+                    }
+                    MultiSubjectSummary summary1 = new FirstFormMultiSubjectSummary(quantifier, tempSumList, objects1, objects2);
+                    summaries.add(summary1);
+                    generateSecondAndThirdForm(quantifier, qualifiers, tempSumList, objects1, objects2);
+                }
+            }
+        }
     }
 
     private void generateSecondAndThirdForm(Quantifier quantifier, List<Label> qualifiers,
                                             List<Label> tempSumList, List<CarDetails> objects1,
                                             List<CarDetails> objects2) {
-//        for (int i = 1; i < qualifiers.size() + 1; i++) {
-//            for (int j = 0; j < qualifiers.size(); j++) {
-//                List<Label> tempQuaList = new ArrayList<>();
-//                if (j + i - 1 < qualifiers.size()) {
-//                    for (int k = j; k < j + i; k++) {
-//                        tempQuaList.add(qualifiers.get(k));
-//                    }
-//                }
-//                if (tempQuaList.size() == i) {
-//                    MultiSubjectSummary summary1 = new LinguisticSummary(quantifier, tempQuaList, tempSumList, objects1, objects2, 2);
-//                    MultiSubjectSummary summary2 = new LinguisticSummary(quantifier, tempQuaList, tempSumList, objects1, objects2, 3);
-//                    summaries.add(summary1);
-//                    summaries.add(summary2);
-//                }
-//            }
-//            if (i == 2 && qualifiers.size() == 3) {
-//                List<Label> tempQuaList = new ArrayList<>();
-//                tempQuaList.add(qualifiers.get(0));
-//                tempQuaList.add(qualifiers.get(2));
-//                MultiSubjectSummary summary1 = new LinguisticSummary(quantifier, tempQuaList, tempSumList, objects1, objects2, 2);
-//                MultiSubjectSummary summary2 = new LinguisticSummary(quantifier, tempQuaList, tempSumList, objects1, objects2, 3);
-//                summaries.add(summary1);
-//                summaries.add(summary2);
-//            }
-//        }
+        for (int i = 1; i < qualifiers.size() + 1; i++) {
+            for (int j = 0; j < qualifiers.size(); j++) {
+                List<Label> tempQuaList = new ArrayList<>();
+                if (j + i - 1 < qualifiers.size()) {
+                    for (int k = j; k < j + i; k++) {
+                        tempQuaList.add(qualifiers.get(k));
+                    }
+                }
+                if (tempQuaList.size() == i) {
+                    MultiSubjectSummary summary1 = new SecondFormMultiSubjectSummary(quantifier, tempSumList, tempQuaList, objects1, objects2);
+                    MultiSubjectSummary summary2 = new ThirdFormMultiSubjectSummary(quantifier, tempSumList, tempQuaList, objects1, objects2);
+                    summaries.add(summary1);
+                    summaries.add(summary2);
+                }
+            }
+            if (i == 2 && qualifiers.size() == 3) {
+                List<Label> tempQuaList = new ArrayList<>();
+                tempQuaList.add(qualifiers.get(0));
+                tempQuaList.add(qualifiers.get(2));
+                MultiSubjectSummary summary1 = new SecondFormMultiSubjectSummary(quantifier, tempSumList, tempQuaList, objects1, objects2);
+                MultiSubjectSummary summary2 = new ThirdFormMultiSubjectSummary(quantifier, tempSumList, tempQuaList, objects1, objects2);
+                summaries.add(summary1);
+                summaries.add(summary2);
+            }
+        }
     }
 
     private Label findLabel(String variableName, String labelName) {
