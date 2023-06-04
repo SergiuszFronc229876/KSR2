@@ -7,6 +7,7 @@ import pl.ksr.logic.summarization.Quantifier;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Stream;
 
 public class FourthFormMultiSubjectSummary implements MultiSubjectSummary {
     private final Quantifier quantifier;
@@ -23,8 +24,28 @@ public class FourthFormMultiSubjectSummary implements MultiSubjectSummary {
 
     @Override
     public double getDegreeOfTruth_T1() {
-        //TODO
-        return 0.0;
+        double implication = 0.0;
+        // A zawiera B + B zawiera A: logic 1,1
+        // A zawiera B + B nie zawiera A: logic 1,0
+        // A nie zawiera B + B  zawiera A: logic 0,1
+
+        List<CarDetails> all = Stream.concat(carsForSubject1.stream(), carsForSubject2.stream()).toList();
+        for (CarDetails c : all) {
+            double memberShip = and(summarizers, c);
+            if (carsForSubject1.contains(c) && carsForSubject2.contains(c)) {
+                implication += lukasiewiczImplication(memberShip, memberShip);
+            } else if (carsForSubject2.contains(c) && !carsForSubject1.contains(c)) {
+                implication += lukasiewiczImplication(memberShip, 0);
+            } else if (!carsForSubject2.contains(c) && carsForSubject1.contains(c)) {
+                implication += lukasiewiczImplication(0, memberShip);
+            }
+
+        }
+        return 1 - (implication/ all.size());
+    }
+
+    private double lukasiewiczImplication(double a, double b) {
+        return Math.min(1, 1 - a + b);
     }
 
     @Override
