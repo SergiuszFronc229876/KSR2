@@ -23,12 +23,12 @@ public class FirstFormMultiSubjectSummary implements MultiSubjectSummary {
 
     @Override
     public double getDegreeOfTruth_T1() {
-        double nfSigmaFirstSubjSumarizers = nfSigmaCount(carsForSubject1, summarizers);
-        double nfSigmaSecondSubjSumarizers = nfSigmaCount(carsForSubject2, summarizers);
+        double nfSigmaFirstSubjSummarizers = nfSigmaCount(carsForSubject1, summarizers);
+        double nfSigmaSecondSubjSummarizers = nfSigmaCount(carsForSubject2, summarizers);
         double m1 = carsForSubject1.size();
         double m2 = carsForSubject2.size();
 
-        return quantifier.getFuzzySet().getMembershipDegree((nfSigmaFirstSubjSumarizers / m1) / ((nfSigmaFirstSubjSumarizers / m1) + (nfSigmaSecondSubjSumarizers / m2)));
+        return quantifier.getFuzzySet().getMembershipDegree((nfSigmaFirstSubjSummarizers / m1) / ((nfSigmaFirstSubjSummarizers / m1) + (nfSigmaSecondSubjSummarizers / m2)));
     }
 
     @Override

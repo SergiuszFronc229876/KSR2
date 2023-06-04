@@ -22,7 +22,7 @@ public interface SingleSubjectSummary {
         measures.put("T11", getLengthOfQualifier_T11());
         return measures;
     }
-    double calculateQuality();
+    double getGoodnessOfSummary();
 
     double getDegreeOfTruth_T1();
 
