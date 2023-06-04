@@ -53,6 +53,9 @@
                         </AnchorPane>
                     </content>
                 </Tab>
+                <Tab text="Podsumowania dwupodmiotowe">
+                    <fx:include fx:id="fooTabPage" source="multiSubjectView.fxml" />
+                </Tab>
                 <Tab text="Baza danych">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
