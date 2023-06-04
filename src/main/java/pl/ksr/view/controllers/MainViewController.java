@@ -175,15 +175,15 @@ public class MainViewController implements Initializable {
 
     private void initData() {
         Map<String, Double> measures = new HashMap<>();
-        measures.put("T1", 0.1);
-        measures.put("T2", 0.1);
-        measures.put("T3", 0.1);
-        measures.put("T4", 0.1);
-        measures.put("T5", 0.1);
-        measures.put("T6", 0.1);
-        measures.put("T7", 0.1);
-        measures.put("T8", 0.1);
-        measures.put("T9", 0.1);
+        measures.put("T1", 0.5);
+        measures.put("T2", 0.05);
+        measures.put("T3", 0.05);
+        measures.put("T4", 0.05);
+        measures.put("T5", 0.05);
+        measures.put("T6", 0.05);
+        measures.put("T7", 0.05);
+        measures.put("T8", 0.05);
+        measures.put("T9", 0.05);
         measures.put("T10", 0.05);
         measures.put("T11", 0.05);
         measureWeights = new MeasureWeights(measures);
