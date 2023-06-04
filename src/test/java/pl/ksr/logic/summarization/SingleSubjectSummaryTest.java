@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import pl.ksr.logic.calculation.functions.TrapezoidalFunction;
 import pl.ksr.logic.calculation.functions.TriangularFunction;
 import pl.ksr.logic.calculation.sets.ContinuousSet;
-import pl.ksr.logic.calculation.sets.DiscreteSet;
 import pl.ksr.logic.calculation.sets.FuzzySet;
 import pl.ksr.logic.model.CarDetails;
 import pl.ksr.logic.summarization.forms.FirstFormSingleSubjectSummary;
@@ -20,9 +19,9 @@ public class SingleSubjectSummaryTest {
     @Test
     public void measure_T1() {
         List<Double> elements = List.of(1500.0, 1100.0, 1900.0, 800.0, 1350.0, 1200.0, 1900.0, 2000.0, 1600.0, 1750.0, 2000.0, 1100.0);
-        List<CarDetails> mockCarDetails = elements.stream().map(e -> new CarDetails(0, "", "", e, 0, 0, 0, 0, 0, 0, 0, 0, 0)).toList();
+        List<CarDetails> mockCarDetails = elements.stream().map(e -> new CarDetails(0, "", "", "", e, 0, 0, 0, 0, 0, 0, 0, 0, 0)).toList();
 
-        TrapezoidalFunction atLeast1800Function = new TrapezoidalFunction(1800, 1800,3000, 3000);
+        TrapezoidalFunction atLeast1800Function = new TrapezoidalFunction(1800, 1800, 3000, 3000);
         ContinuousSet salarySet = new ContinuousSet(0, 3000);
         FuzzySet atLeast1800SalaryFuzzySet = new FuzzySet(atLeast1800Function, salarySet);
         Label averageSalary = new Label("atLeast1800Salary", "Cena", atLeast1800SalaryFuzzySet);
