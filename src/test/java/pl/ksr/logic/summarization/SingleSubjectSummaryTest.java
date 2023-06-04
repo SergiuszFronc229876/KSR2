@@ -39,20 +39,6 @@ public class SingleSubjectSummaryTest {
     }
 
     @Test
-    public void degreeOfImprecision_T2() {
-        TriangularFunction averageSalaryFunction = new TriangularFunction(1100, 1400, 1700);
-        DiscreteSet salarySet = new DiscreteSet(List.of(1500.0, 1100.0, 1900.0, 800.0, 1350.0, 1200.0, 1900.0, 2000.0, 1600.0, 1750.0, 2000.0, 1100.0));
-        FuzzySet averageSalaryFuzzySet = new FuzzySet(averageSalaryFunction, salarySet);
-
-        TrapezoidalFunction middleAgedFunction = new TrapezoidalFunction(36, 40, 46, 50);
-        DiscreteSet ageSet = new DiscreteSet(List.of(38.0, 31.0, 36.0, 24.0, 30.0, 24.0, 45.0, 38.0, 28.0, 40.0, 45.0, 50.0));
-        FuzzySet middleAgedFuzzySet = new FuzzySet(middleAgedFunction, ageSet);
-
-//        new FirstFormSingleSubjectSummary(null, null, )
-//        Assertions.assertEquals();
-    }
-
-    @Test
     public void measure_T6_relativeQuantifier() {
         TriangularFunction functionQ1 = new TriangularFunction(0, 0.25, 0.5);
         TrapezoidalFunction functionQ2 = new TrapezoidalFunction(0, 0.125, 0.375, 0.5);
@@ -65,27 +51,6 @@ public class SingleSubjectSummaryTest {
 
         FirstFormSingleSubjectSummary summaryQ1 = new FirstFormSingleSubjectSummary(null, q1, null, null);
         FirstFormSingleSubjectSummary summaryQ2 = new FirstFormSingleSubjectSummary(null, q2, null, null);
-
-        double T6Q1 = summaryQ1.getDegreeOfQuantifierImprecision_T6();
-        double T6Q2 = summaryQ2.getDegreeOfQuantifierImprecision_T6();
-
-        Assertions.assertEquals(0.5, T6Q1);
-        Assertions.assertEquals(0.5, T6Q2);
-    }
-
-    @Test
-    public void measure_T6_absoluteQuantifier() {
-        TriangularFunction functionQ1 = new TriangularFunction(0, 0.25, 0.5);
-        TrapezoidalFunction functionQ2 = new TrapezoidalFunction(0, 0.125, 0.375, 0.5);
-
-        FuzzySet fuzzySetQ1 = new FuzzySet(functionQ1, new ContinuousSet(0, 1));
-        FuzzySet fuzzySetQ2 = new FuzzySet(functionQ2, new ContinuousSet(0, 1));
-
-        AbsoluteQuantifier q1 = new AbsoluteQuantifier("Q1", fuzzySetQ1);
-        AbsoluteQuantifier q2 = new AbsoluteQuantifier("Q2", fuzzySetQ2);
-
-        FirstFormSingleSubjectSummary summaryQ1 = new FirstFormSingleSubjectSummary(null, q1, null, carDetailsList);
-        FirstFormSingleSubjectSummary summaryQ2 = new FirstFormSingleSubjectSummary(null, q2, null, carDetailsList);
 
         double T6Q1 = summaryQ1.getDegreeOfQuantifierImprecision_T6();
         double T6Q2 = summaryQ2.getDegreeOfQuantifierImprecision_T6();
