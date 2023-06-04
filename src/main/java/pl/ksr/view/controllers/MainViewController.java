@@ -341,6 +341,7 @@ public class MainViewController implements Initializable {
         // Create new columns
         TableColumn<SingleSubjectSummary, String> summaryColumn = new TableColumn<>("Summary");
         summaryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().toString()));
+        summaryColumn.setPrefWidth(500);
 
         TableColumn<SingleSubjectSummary, Double> goodnessOfSummaryColumn = new TableColumn<>("T");
         goodnessOfSummaryColumn.setCellValueFactory(new PropertyValueFactory<>("goodnessOfSummary"));

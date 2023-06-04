@@ -34,7 +34,7 @@ public class ThirdFormMultiSubjectSummary implements MultiSubjectSummary {
     }
 
     @Override
-    public String printSummary() {
+    public String toString() {
         String subjectName1 = carsForSubject1.get(0).getFuelType();
         String subjectName2 =  carsForSubject2.get(0).getFuelType();
         StringBuilder sb = new StringBuilder();
