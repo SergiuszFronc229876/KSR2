@@ -224,6 +224,7 @@ public class MultiSubjectViewController implements Initializable {
         // Create new columns
         TableColumn<MultiSubjectSummary, String> summaryColumn = new TableColumn<>("Summary");
         summaryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().toString()));
+        summaryColumn.setPrefWidth(1200);
 
         TableColumn<MultiSubjectSummary, Double> degreeOfTruthColumn = new TableColumn<>("T1");
         degreeOfTruthColumn.setCellValueFactory(new PropertyValueFactory<>("degreeOfTruth_T1"));

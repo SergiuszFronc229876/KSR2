@@ -45,5 +45,5 @@ public interface MultiSubjectSummary {
         return result;
     }
 
-    String printSummary();
+    String toString();
 }

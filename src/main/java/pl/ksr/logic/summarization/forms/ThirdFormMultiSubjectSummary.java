@@ -34,12 +34,12 @@ public class ThirdFormMultiSubjectSummary implements MultiSubjectSummary {
     }
 
     @Override
-    public String printSummary() {
+    public String toString() {
         String subjectName1 = carsForSubject1.get(0).getFuelType();
         String subjectName2 =  carsForSubject2.get(0).getFuelType();
         StringBuilder sb = new StringBuilder();
         sb.append(quantifier.getName().toUpperCase(Locale.ROOT))
-                .append("samochodów z silnikiem " + subjectName1)
+                .append(" samochodów z silnikiem " + subjectName1)
                 .append(" które są ");
         for (int i = 0; i < qualifiers.size(); i++) {
             Label qualifier = qualifiers.get(i);
