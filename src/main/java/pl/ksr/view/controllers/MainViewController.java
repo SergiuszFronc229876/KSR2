@@ -342,6 +342,10 @@ public class MainViewController implements Initializable {
         TableColumn<SingleSubjectSummary, String> summaryColumn = new TableColumn<>("Summary");
         summaryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().toString()));
 
+        TableColumn<SingleSubjectSummary, Double> goodnessOfSummaryColumn = new TableColumn<>("T");
+        goodnessOfSummaryColumn.setCellValueFactory(new PropertyValueFactory<>("goodnessOfSummary"));
+        goodnessOfSummaryColumn.setCellFactory(column -> new RoundedTableCell<>());
+
         TableColumn<SingleSubjectSummary, Double> degreeOfTruthColumn = new TableColumn<>("T1");
         degreeOfTruthColumn.setCellValueFactory(new PropertyValueFactory<>("degreeOfTruth_T1"));
         degreeOfTruthColumn.setCellFactory(column -> new RoundedTableCell<>());
@@ -389,6 +393,7 @@ public class MainViewController implements Initializable {
         // Add the columns to the TableView
         summaryTable.getColumns().addAll(
                 summaryColumn,
+                goodnessOfSummaryColumn,
                 degreeOfTruthColumn,
                 degreeOfImprecisionColumn,
                 degreeOfCoveringColumn,

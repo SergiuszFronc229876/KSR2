@@ -22,7 +22,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
     }
 
     @Override
-    public double calculateQuality() {
+    public double getGoodnessOfSummary() {
         Map<String, Double> measures = calculateMeasures();
         return measures.entrySet().stream()
                 .mapToDouble(e -> e.getValue() * weights.getWeights().get(e.getKey()))
