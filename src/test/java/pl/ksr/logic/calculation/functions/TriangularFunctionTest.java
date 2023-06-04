@@ -1,7 +1,6 @@
-package pl.ksr.model.calculation.functions;
+package pl.ksr.logic.calculation.functions;
 
 import org.junit.jupiter.api.Test;
-import pl.ksr.logic.calculation.functions.TriangularFunction;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,9 +1,8 @@
-package pl.ksr.model.calculation.functions;
+package pl.ksr.logic.calculation.functions;
 
 import org.junit.jupiter.api.Test;
-import pl.ksr.logic.calculation.functions.TrapezoidalFunction;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TrapezoidalFunctionTest {
 

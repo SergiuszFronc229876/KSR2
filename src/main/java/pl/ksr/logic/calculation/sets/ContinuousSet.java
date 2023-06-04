@@ -4,8 +4,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @EqualsAndHashCode
@@ -57,7 +57,7 @@ public class ContinuousSet implements ClassicSet {
     }
 
     public DiscreteSet discretize(double step) {
-        Set<Double> elements = new HashSet<>();
+        List<Double> elements = new ArrayList<>();
         for (double i = beginOfUniverse; i < beginOfUniverse; i += step) {
             elements.add(i);
         }
