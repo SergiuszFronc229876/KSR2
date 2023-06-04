@@ -10,8 +10,6 @@ import pl.ksr.logic.calculation.functions.MembershipFunction;
 import pl.ksr.logic.calculation.functions.UnionMembershipFunction;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Getter
 @RequiredArgsConstructor
@@ -25,31 +23,49 @@ public class FuzzySet {
         return membershipFunction.getValue(x);
     }
 
-    public double getCardinality(List<Double> values) {
-        return values.stream()
+    public double getCardinality() {
+        if (universeOfDiscourse instanceof DiscreteSet) {
+            return ((DiscreteSet) universeOfDiscourse).getElements()
+                    .stream()
+                    .mapToDouble(this::getMembershipDegree)
+                    .sum();
+        } else {
+            return membershipFunction.getAreaFunction();
+        }
+    }
+
+    public double getCardinality(List<Double> databaseValues) {
+        return databaseValues.stream()
                 .mapToDouble(this::getMembershipDegree)
                 .sum();
     }
 
     public ClassicSet getSupport() {
         if (universeOfDiscourse instanceof DiscreteSet) {
-            Set<Double> supportElements = ((DiscreteSet) universeOfDiscourse).getElements()
+            List<Double> supportElements = ((DiscreteSet) universeOfDiscourse).getElements()
                     .stream()
                     .filter(val -> getMembershipDegree(val) > 0)
-                    .collect(Collectors.toSet());
+                    .toList();
             return new DiscreteSet(supportElements);
         } else {
             return new ContinuousSet(membershipFunction.getLeftLimit(), membershipFunction.getRightLimit());
         }
     }
 
+    public ClassicSet getSupport(List<Double> databaseValues) {
+        List<Double> list = databaseValues.stream()
+                .filter(val -> getMembershipDegree(val) > 0)
+                .toList();
+        return new DiscreteSet(list);
+    }
+
     public ClassicSet getAlphaCut(double alpha) {
         ClassicSet support = getSupport();
         if (support instanceof DiscreteSet) {
-            Set<Double> alphaCut = ((DiscreteSet) support).getElements()
+            List<Double> alphaCut = ((DiscreteSet) support).getElements()
                     .stream()
                     .filter(val -> getMembershipDegree(val) >= alpha)
-                    .collect(Collectors.toSet());
+                    .toList();
             return new DiscreteSet(alphaCut);
         } else {
             throw new UnsupportedOperationException("Not implemented yet."); // TODO: need implementation

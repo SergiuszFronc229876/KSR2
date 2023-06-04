@@ -76,6 +76,7 @@ public class MainViewController implements Initializable {
         fillQualifiersTreeView();
         fillSummarizersTreeView();
         fillWeights();
+        initSummaryTableColumns();
     }
 
     private void fillWeights() {
@@ -109,7 +110,6 @@ public class MainViewController implements Initializable {
     }
 
     private void fillDatabaseTable() {
-        carDetailsTable.getItems().clear();
         TableColumn<CarDetails, String> column1 = new TableColumn<>("ID");
         TableColumn<CarDetails, String> column2 = new TableColumn<>("Franchise");
         TableColumn<CarDetails, String> column3 = new TableColumn<>("Model");
@@ -240,13 +240,13 @@ public class MainViewController implements Initializable {
         LinguisticVariable pojemnoscSilnika = new LinguisticVariable("Pojemność silnika", labelsPojemnosc);
 
         //Długość
-        Label mikrosamochód = new Label("mikrosamochód", "Długość", new FuzzySet(new TrapezoidalFunction(2.4, 2.4, 3.1, 3.5), new ContinuousSet(2.4, 6.6)));
+        Label mikrosamochod = new Label("mikrosamochód", "Długość", new FuzzySet(new TrapezoidalFunction(2.4, 2.4, 3.1, 3.5), new ContinuousSet(2.4, 6.6)));
         Label miejski = new Label("samochód miejski", "Długość", new FuzzySet(new TrapezoidalFunction(3.1, 3.5, 4.0, 4.2), new ContinuousSet(2.4, 6.6)));
         Label kompaktowy = new Label("samochód kompaktowy", "Długość", new FuzzySet(new TrapezoidalFunction(4.0, 4.2, 4.5, 4.7), new ContinuousSet(2.4, 6.6)));
         Label klasySredniej = new Label("samochód klasy średniej", "Długość", new FuzzySet(new TrapezoidalFunction(4.5, 4.7, 4.9, 5.1), new ContinuousSet(2.4, 6.6)));
         Label klasySredniejWyzszej = new Label("samochód klasy średniej wyższej", "Długość", new FuzzySet(new TrapezoidalFunction(4.9, 5.1, 5.3, 5.5), new ContinuousSet(2.4, 6.6)));
         Label wyzszej = new Label("samochód klasy wyższej", "Długość", new FuzzySet(new TrapezoidalFunction(5.3, 5.5, 6.6, 6.6), new ContinuousSet(2.4, 6.6)));
-        List<Label> labelsDlugosc = List.of(mikrosamochód, miejski, kompaktowy, klasySredniej, klasySredniejWyzszej, wyzszej);
+        List<Label> labelsDlugosc = List.of(mikrosamochod, miejski, kompaktowy, klasySredniej, klasySredniejWyzszej, wyzszej);
         LinguisticVariable dlugosc = new LinguisticVariable("Długość", labelsDlugosc);
 
         //Zbiornik Paliwa
@@ -341,10 +341,7 @@ public class MainViewController implements Initializable {
         fillSummaryTable();
     }
 
-    private void fillSummaryTable() {
-        // Remove columns with old data (if any)
-        summaryTable.getItems().clear();
-
+    public void initSummaryTableColumns() {
         // Create new columns
         TableColumn<SingleSubjectSummary, String> summaryColumn = new TableColumn<>("Summary");
         summaryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().toString()));
@@ -408,13 +405,12 @@ public class MainViewController implements Initializable {
                 degreeOfQualifierCardinalityColumn,
                 lengthOfQualifierColumn
         );
+    }
 
-        // Create a list of Summary objects
+    private void fillSummaryTable() {
+        summaryTable.getItems().clear();
         ObservableList<SingleSubjectSummary> summaryList = FXCollections.observableArrayList();
-        // Add Summary objects to the list (replace with your actual data)
         summaryList.addAll(summaries);
-
-        // Set the items of the TableView to the list of Summary objects
         summaryTable.setItems(summaryList);
     }
 
@@ -434,7 +430,7 @@ public class MainViewController implements Initializable {
                             continue;
                         }
                         SingleSubjectSummary singleSubjectSummary;
-                        if (qualifiers.size() > 0) {
+                        if (qualifiers.size() == 0) {
                             singleSubjectSummary = new FirstFormSingleSubjectSummary(measureWeights, quantifier, tempSumList, carDetailsList);
                         } else {
                             singleSubjectSummary = new SecondFormSingleSubjectSummary(measureWeights, quantifier, qualifiers, tempSumList, carDetailsList);

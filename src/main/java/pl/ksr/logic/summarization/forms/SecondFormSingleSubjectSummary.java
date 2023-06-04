@@ -155,8 +155,7 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(quantifier.getName().toUpperCase(Locale.ROOT)).append(" samochodów jest/ma ");
-        sb.append("będąca/mająca ");
+        sb.append(quantifier.getName().toUpperCase(Locale.ROOT)).append(" samochodów będącyh/mających ");
         for (int i = 0; i < qualifiers.size(); i++) {
             Label qualifier = qualifiers.get(i);
             sb.append(qualifier.getName().toUpperCase(Locale.ROOT)).append(" ")
