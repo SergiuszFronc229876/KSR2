@@ -116,7 +116,7 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
         double multiply = 1.0;
         for (Label summarizer : summarizers) {
             multiply = multiply * (summarizer.getFuzzySet().getCardinality(cars.stream()
-                    .map(c -> fieldForLabel(summarizer, c)).toList()) / summarizer.getFuzzySet().getUniverseOfDiscourse().getSize());
+                    .map(c -> fieldForLabel(summarizer, c)).toList()) / cars.size());
         }
         multiply = Math.pow(multiply, (double) 1 / summarizers.size());
         return 1.0 - multiply;
