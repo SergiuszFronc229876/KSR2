@@ -434,7 +434,7 @@ public class MainViewController implements Initializable {
                             continue;
                         }
                         SingleSubjectSummary singleSubjectSummary;
-                        if (qualifiers.size() > 0) {
+                        if (qualifiers.size() == 0) {
                             singleSubjectSummary = new FirstFormSingleSubjectSummary(measureWeights, quantifier, tempSumList, carDetailsList);
                         } else {
                             singleSubjectSummary = new SecondFormSingleSubjectSummary(measureWeights, quantifier, qualifiers, tempSumList, carDetailsList);
