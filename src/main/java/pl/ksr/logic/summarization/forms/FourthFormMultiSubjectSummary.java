@@ -10,13 +10,11 @@ import java.util.Locale;
 import java.util.stream.Stream;
 
 public class FourthFormMultiSubjectSummary implements MultiSubjectSummary {
-    private final Quantifier quantifier;
     private final List<Label> summarizers;
     private final List<CarDetails> carsForSubject1;
     private final List<CarDetails> carsForSubject2;
 
-    public FourthFormMultiSubjectSummary(Quantifier quantifier, List<Label> summarizers, List<CarDetails> carsForSubject1, List<CarDetails> carsForSubject2) {
-        this.quantifier = quantifier;
+    public FourthFormMultiSubjectSummary(List<Label> summarizers, List<CarDetails> carsForSubject1, List<CarDetails> carsForSubject2) {
         this.summarizers = summarizers;
         this.carsForSubject1 = carsForSubject1;
         this.carsForSubject2 = carsForSubject2;
@@ -54,9 +52,9 @@ public class FourthFormMultiSubjectSummary implements MultiSubjectSummary {
         String subjectName2 =  carsForSubject2.get(0).getFuelType();
         StringBuilder sb = new StringBuilder();
         sb.append("Więcej ")
-                .append("samochodów z silnikiem " + subjectName1)
+                .append(" samochodów z silnikiem " + subjectName1)
                 .append(" niż ")
-                .append("samochodów z silnikiem " + subjectName2)
+                .append(" samochodów z silnikiem " + subjectName2)
                 .append(" jest ");
         for (int i = 0; i < summarizers.size(); i++) {
             Label summarizer = summarizers.get(i);

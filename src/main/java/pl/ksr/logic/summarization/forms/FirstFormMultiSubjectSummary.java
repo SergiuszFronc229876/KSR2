@@ -37,9 +37,9 @@ public class FirstFormMultiSubjectSummary implements MultiSubjectSummary {
         String subjectName2 =  carsForSubject2.get(0).getFuelType();
         StringBuilder sb = new StringBuilder();
         sb.append(quantifier.getName().toUpperCase(Locale.ROOT))
-                .append("samochodów z silnikiem " + subjectName1)
+                .append(" samochodów z silnikiem " + subjectName1)
                 .append(" w porównaniu do ")
-                .append("samochodów z silnikiem " + subjectName2)
+                .append(" samochodów z silnikiem " + subjectName2)
                 .append(" jest/ma ");
         for (int i = 0; i < summarizers.size(); i++) {
             Label summarizer = summarizers.get(i);

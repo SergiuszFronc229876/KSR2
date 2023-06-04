@@ -300,7 +300,7 @@ public class MultiSubjectViewController implements Initializable {
                     }
                 }
                 if (tempSumList.size() == i) {
-                    MultiSubjectSummary summary2 = new FourthFormMultiSubjectSummary(quantifiers.get(0), tempSumList, objects1, objects2);
+                    MultiSubjectSummary summary2 = new FourthFormMultiSubjectSummary(tempSumList, objects1, objects2);
                     summaries.add(summary2);
                     for (Quantifier quantifier : quantifiers) {
                         if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
@@ -316,7 +316,7 @@ public class MultiSubjectViewController implements Initializable {
                 List<Label> tempSumList = new ArrayList<>();
                 tempSumList.add(summarizers.get(0));
                 tempSumList.add(summarizers.get(2));
-                MultiSubjectSummary summary2 = new FourthFormMultiSubjectSummary(quantifiers.get(0), tempSumList, objects1, objects2);
+                MultiSubjectSummary summary2 = new FourthFormMultiSubjectSummary(tempSumList, objects1, objects2);
                 summaries.add(summary2);
                 for (Quantifier quantifier : quantifiers) {
                     if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
