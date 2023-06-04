@@ -48,7 +48,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
         for (Label summarizer : summarizers) {
             multiply = multiply * summarizer.getFuzzySet().getDegreeOfFuzziness();
         }
-        double res = Math.pow(multiply, 1 / (double) summarizers.size());
+        double res = Math.pow(multiply, 1.0 / summarizers.size());
         return 1.0 - res;
     }
 
@@ -101,7 +101,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
     @Override
     public double getDegreeOfQuantifierCardinality_T7() {
         FuzzySet fs = quantifier.getFuzzySet();
-        double measure = quantifier.getCardinality();
+        double measure = quantifier.getFuzzySet().getCardinality();
         if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
             return 1.0 - (measure / cars.size());
         } else {
@@ -116,7 +116,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
             multiply = multiply * (summarizer.getFuzzySet().getCardinality(cars.stream()
                     .map(c -> fieldForLabel(summarizer, c)).toList()) / summarizer.getFuzzySet().getUniverseOfDiscourse().getSize());
         }
-        multiply = Math.pow(multiply, (double) 1 / summarizers.size());
+        multiply = Math.pow(multiply, 1.0 / summarizers.size());
         return 1.0 - multiply;
     }
 

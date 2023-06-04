@@ -30,7 +30,7 @@ public class TrapezoidalFunction implements MembershipFunction {
 
     @Override
     public double getAreaFunction() {
-        return ((rightMin - leftMin) + (rightMax - leftMin)) / 2;
+        return ((rightMin - leftMin) + (rightMax - leftMax)) / 2;
     }
 
     @Override

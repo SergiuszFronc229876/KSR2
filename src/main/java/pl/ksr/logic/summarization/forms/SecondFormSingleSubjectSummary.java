@@ -104,8 +104,7 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
     }
 
     public double getDegreeOfQuantifierCardinality_T7() {
-        FuzzySet fs = quantifier.getFuzzySet();
-        double measure = quantifier.getCardinality();
+        double measure = quantifier.getFuzzySet().getCardinality();
         if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
             return 1.0 - (measure / cars.size());
         } else {
