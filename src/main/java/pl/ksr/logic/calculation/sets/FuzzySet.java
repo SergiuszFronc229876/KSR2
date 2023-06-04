@@ -76,6 +76,10 @@ public class FuzzySet {
         return getSupport().getSize() / universeOfDiscourse.getSize();
     }
 
+    public double getDegreeOfFuzziness(List<Double> databaseValues) {
+        return getSupport(databaseValues).getSize() / databaseValues.size();
+    }
+
     public FuzzySet complement(FuzzySet otherSet) {
         return new FuzzySet(new ComplementMembershipFunction(membershipFunction), universeOfDiscourse);
     }
@@ -106,7 +110,7 @@ public class FuzzySet {
                     .stream()
                     .mapToDouble(this::getMembershipDegree)
                     .max()
-                    .getAsDouble();
+                    .orElse(0);
         } else {
             throw new UnsupportedOperationException("Not implemented yet."); // TODO: need implementation
         }

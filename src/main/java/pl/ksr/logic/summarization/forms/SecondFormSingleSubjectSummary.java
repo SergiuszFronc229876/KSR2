@@ -52,7 +52,7 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
         for (Label summarizer : summarizers) {
             multiply = multiply * summarizer.getFuzzySet().getDegreeOfFuzziness();
         }
-        double res = Math.pow(multiply, 1 / (double) summarizers.size());
+        double res = Math.pow(multiply, 1.0 / summarizers.size());
         return 1.0 - res;
     }
 
@@ -118,31 +118,27 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
             multiply = multiply * (summarizer.getFuzzySet().getCardinality(cars.stream()
                     .map(c -> fieldForLabel(summarizer, c)).toList()) / cars.size());
         }
-        multiply = Math.pow(multiply, (double) 1 / summarizers.size());
+        multiply = Math.pow(multiply, 1.0 / summarizers.size());
         return 1.0 - multiply;
     }
 
     public double getDegreeOfQualifierImprecision_T9() {
         double multiply = 1.0;
-        if (qualifiers != null) {
-            for (Label qualifier : qualifiers) {
-                multiply = multiply * qualifier.getFuzzySet().getDegreeOfFuzziness();
-            }
+        for (Label qualifier : qualifiers) {
+            multiply = multiply * qualifier.getFuzzySet().getDegreeOfFuzziness(cars.stream()
+                    .map(c -> fieldForLabel(qualifier, c)).toList());
         }
-        double res = Math.pow(multiply, (double) 1 / (qualifiers != null ? qualifiers.size() : 1));
+        double res = Math.pow(multiply, 1.0 / qualifiers.size());
         return 1.0 - res;
     }
 
     public double getDegreeOfQualifierCardinality_T10() {
         double multiply = 1;
-        if (qualifiers != null) {
-            for (Label qualifier : qualifiers) {
-                multiply = multiply * (qualifier.getFuzzySet().getCardinality(cars.stream()
-                        .map(c -> fieldForLabel(qualifier, c)).toList()) / cars.size());
-            }
+        for (Label qualifier : qualifiers) {
+            multiply = multiply * (qualifier.getFuzzySet().getCardinality(cars.stream()
+                    .map(c -> fieldForLabel(qualifier, c)).toList()) / cars.size());
         }
-
-        multiply = Math.pow(multiply, (double) 1 / (qualifiers != null ? qualifiers.size() : 1));
+        multiply = Math.pow(multiply, 1.0 / qualifiers.size());
         return 1.0 - multiply;
 
     }
