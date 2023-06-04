@@ -55,7 +55,7 @@ public class FourthFormMultiSubjectSummary implements MultiSubjectSummary {
                 .append(" samochodów z silnikiem " + subjectName1)
                 .append(" niż ")
                 .append(" samochodów z silnikiem " + subjectName2)
-                .append(" jest ");
+                .append(" jest/ma ");
         for (int i = 0; i < summarizers.size(); i++) {
             Label summarizer = summarizers.get(i);
             sb.append(summarizer.getName().toUpperCase(Locale.ROOT)).append(" ")
