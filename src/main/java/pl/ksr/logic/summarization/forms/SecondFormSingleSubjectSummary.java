@@ -138,7 +138,7 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
         if (qualifiers != null) {
             for (Label qualifier : qualifiers) {
                 multiply = multiply * (qualifier.getFuzzySet().getCardinality(cars.stream()
-                        .map(c -> fieldForLabel(qualifier, c)).toList()) / qualifier.getFuzzySet().getUniverseOfDiscourse().getSize());
+                        .map(c -> fieldForLabel(qualifier, c)).toList()) / cars.size());
             }
         }
 
