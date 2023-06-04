@@ -22,6 +22,7 @@ public interface SingleSubjectSummary {
         measures.put("T11", getLengthOfQualifier_T11());
         return measures;
     }
+
     double getGoodnessOfSummary();
 
     double getDegreeOfTruth_T1();
@@ -66,14 +67,11 @@ public interface SingleSubjectSummary {
         if (labels == null) {
             return 1;
         }
-        double min = 1.0;
-        for (Label label : labels) {
-            double degreeOfMembership = label.getFuzzySet().getMembershipDegree(fieldForLabel(label, car));
-            if (degreeOfMembership < min) {
-                min = degreeOfMembership;
-            }
-        }
-        return min;
+        return labels.stream()
+                .mapToDouble(label -> label.getFuzzySet().getMembershipDegree(fieldForLabel(label, car)))
+                .min()
+                .orElse(1);
     }
+
     String toString();
 }
