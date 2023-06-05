@@ -48,13 +48,13 @@ public class FourthFormMultiSubjectSummary implements MultiSubjectSummary {
 
     @Override
     public String toString() {
-        String subjectName1 = "carsForSubject1.get(0).isNew()";
-        String subjectName2 =  "carsForSubject2.get(0).isNew()";
+        String subjectName1 = subjectName(carsForSubject1.get(0).isNew());
+        String subjectName2 = subjectName(carsForSubject2.get(0).isNew());
         StringBuilder sb = new StringBuilder();
         sb.append("Więcej ")
-                .append(" samochodów z silnikiem " + subjectName1)
+                .append(" samochodów " + subjectName1)
                 .append(" niż ")
-                .append(" samochodów z silnikiem " + subjectName2)
+                .append(" samochodów " + subjectName2)
                 .append(" jest/ma ");
         for (int i = 0; i < summarizers.size(); i++) {
             Label summarizer = summarizers.get(i);
