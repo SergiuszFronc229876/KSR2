@@ -20,7 +20,7 @@ public class CarDetailsReader {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
             // Skip the header line if it exists
-            reader.readLine();
+            String headerLine = reader.readLine();
 
             String line;
             while ((line = reader.readLine()) != null) {
@@ -39,8 +39,8 @@ public class CarDetailsReader {
                 double torque = Double.parseDouble(data[9].replace(",", "."));
                 double length = Double.parseDouble(data[10].replace(",", "."));
                 double width = Double.parseDouble(data[11].replace(",", "."));
-                double fuelEconomy = Double.parseDouble(data[12].replace(",", "."));
-                boolean isNew = Boolean.parseBoolean(data[13]);
+                boolean isNew = Boolean.parseBoolean(data[12]);
+                double fuelEconomy = Double.parseDouble(data[13].replace(",", "."));
 
                 CarDetails carDetails = new CarDetails(id, franchiseName, modelName, isNew, price, mileage, horsepower, engineDisplacement,
                         fuelTankVolume, wheelbase, torque, length, width, fuelEconomy);
