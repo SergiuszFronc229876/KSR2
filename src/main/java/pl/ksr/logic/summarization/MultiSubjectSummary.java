@@ -45,9 +45,5 @@ public interface MultiSubjectSummary {
         return result;
     }
 
-    default String subjectName(boolean isNew) {
-        return isNew ? "wyprodukowanych mniej niż 5 lat temu" : "wyprodukowanych ponad 5 lata temu";
-    }
-
     String toString();
 }
