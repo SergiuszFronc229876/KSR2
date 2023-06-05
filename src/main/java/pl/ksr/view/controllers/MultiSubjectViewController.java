@@ -52,23 +52,23 @@ public class MultiSubjectViewController implements Initializable {
         fillQualifiersTreeView();
         fillSummarizersTreeView();
 
-        firstSubject_CB.getItems().addAll(List.of("Diesel", "Benzyna"));
-        secondSubject_CB.getItems().addAll(List.of("Diesel", "Benzyna"));
+        firstSubject_CB.getItems().addAll(List.of("nowe auta", "stare auta"));
+        secondSubject_CB.getItems().addAll(List.of("nowe auta", "stare auta"));
 
         firstSubject_CB.setOnAction(event -> {
             String selectedValue = firstSubject_CB.getValue();
-            if (selectedValue.equals("Diesel")) {
-                secondSubject_CB.setValue("Benzyna");
-            } else if (selectedValue.equals("Benzyna")) {
-                secondSubject_CB.setValue("Diesel");
+            if (selectedValue.equals("nowe auta")) {
+                secondSubject_CB.setValue("stare auta");
+            } else if (selectedValue.equals("stare auta")) {
+                secondSubject_CB.setValue("nowe auta");
             }
         });
         secondSubject_CB.setOnAction(event -> {
             String selectedValue = secondSubject_CB.getValue();
-            if (selectedValue.equals("Diesel")) {
-                firstSubject_CB.setValue("Benzyna");
-            } else if (selectedValue.equals("Benzyna")) {
-                firstSubject_CB.setValue("Diesel");
+            if (selectedValue.equals("nowe auta")) {
+                firstSubject_CB.setValue("stare auta");
+            } else if (selectedValue.equals("stare auta")) {
+                firstSubject_CB.setValue("nowe auta");
             }
         });
     }
@@ -282,12 +282,12 @@ public class MultiSubjectViewController implements Initializable {
         List<CarDetails> objects1;
         List<CarDetails> objects2;
 
-        if (firstSubject_CB.getValue().equals("Diesel")) {
-            objects1 = carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Benzyna")).toList();
-            objects2 = carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Diesel")).toList();
+        if (firstSubject_CB.getValue().equals("nowe auta")) {
+            objects1 = carDetailsList.stream().filter(CarDetails::isNew).toList();
+            objects2 = carDetailsList.stream().filter(carDetails -> !carDetails.isNew()).toList();
         } else {
-            objects1 = carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Diesel")).toList();
-            objects2 = carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Benzyna")).toList();
+            objects1 = carDetailsList.stream().filter(carDetails -> !carDetails.isNew()).toList();
+            objects2 = carDetailsList.stream().filter(CarDetails::isNew).toList();
         }
 
         List<Label> emptyQualifiers = new ArrayList<>();
