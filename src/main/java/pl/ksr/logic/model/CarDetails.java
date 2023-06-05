@@ -10,7 +10,7 @@ public class CarDetails {
     private long id;
     private String franchiseName;
     private String modelName;
-    private boolean isNew;
+    private String fuelType;
     private double price;
     private double mileage;
     private double horsepower;

@@ -35,8 +35,8 @@ public class SecondFormMultiSubjectSummary implements MultiSubjectSummary {
 
     @Override
     public String toString() {
-        String subjectName1 = "carsForSubject1.get(0).isNew()";
-        String subjectName2 = "carsForSubject2.get(0).isNew()";
+        String subjectName1 = carsForSubject1.get(0).getFuelType();
+        String subjectName2 =  carsForSubject2.get(0).getFuelType();
         StringBuilder sb = new StringBuilder();
         sb.append(quantifier.getName().toUpperCase(Locale.ROOT))
                 .append(" samochodów z silnikiem " + subjectName1)

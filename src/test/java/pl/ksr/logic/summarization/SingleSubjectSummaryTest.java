@@ -19,7 +19,7 @@ public class SingleSubjectSummaryTest {
     @Test
     public void measure_T1() {
         List<Double> elements = List.of(1500.0, 1100.0, 1900.0, 800.0, 1350.0, 1200.0, 1900.0, 2000.0, 1600.0, 1750.0, 2000.0, 1100.0);
-        List<CarDetails> mockCarDetails = elements.stream().map(e -> new CarDetails(0, "", "", false, e, 0, 0, 0, 0, 0, 0, 0, 0, 0)).toList();
+        List<CarDetails> mockCarDetails = elements.stream().map(e -> new CarDetails(0, "", "", "", e, 0, 0, 0, 0, 0, 0, 0, 0, 0)).toList();
 
         TrapezoidalFunction atLeast1800Function = new TrapezoidalFunction(1800, 1800, 3000, 3000);
         ContinuousSet salarySet = new ContinuousSet(0, 3000);

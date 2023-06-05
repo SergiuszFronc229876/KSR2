@@ -39,10 +39,10 @@ public class CarDetailsReader {
                 double torque = Double.parseDouble(data[9].replace(",", "."));
                 double length = Double.parseDouble(data[10].replace(",", "."));
                 double width = Double.parseDouble(data[11].replace(",", "."));
-                boolean isNew = Boolean.parseBoolean(data[12]);
+                String fuelType = data[12];
                 double fuelEconomy = Double.parseDouble(data[13].replace(",", "."));
 
-                CarDetails carDetails = new CarDetails(id, franchiseName, modelName, isNew, price, mileage, horsepower, engineDisplacement,
+                CarDetails carDetails = new CarDetails(id, franchiseName, modelName, fuelType, price, mileage, horsepower, engineDisplacement,
                         fuelTankVolume, wheelbase, torque, length, width, fuelEconomy);
 
                 carDetailsList.add(carDetails);
