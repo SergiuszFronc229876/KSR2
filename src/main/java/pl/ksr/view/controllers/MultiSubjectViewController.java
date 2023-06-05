@@ -282,7 +282,7 @@ public class MultiSubjectViewController implements Initializable {
         List<CarDetails> objects1;
         List<CarDetails> objects2;
 
-        if (firstSubject_CB.getValue().equals("Diesel")) {
+        if (firstSubject_CB.getValue().equals("Benzyna")) {
             objects1 = carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Benzyna")).toList();
             objects2 = carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Diesel")).toList();
         } else {
