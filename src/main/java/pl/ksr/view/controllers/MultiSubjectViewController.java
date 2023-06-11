@@ -96,7 +96,20 @@ public class MultiSubjectViewController implements Initializable {
 
     public void initSummaryTableColumns() {
         // Create new columns
-        TableColumn<MultiSubjectSummary, String> summaryColumn = new TableColumn<>("Summary");
+        TableColumn<MultiSubjectSummary, String> formNumber = new TableColumn<>("Numer formy");
+        formNumber.setCellValueFactory(cellData -> {
+            if (cellData.getValue().getClass().equals(FirstFormMultiSubjectSummary.class)) {
+                return new SimpleStringProperty("1");
+            } else if (cellData.getValue().getClass().equals(SecondFormMultiSubjectSummary.class)) {
+                return new SimpleStringProperty("2");
+            } else if (cellData.getValue().getClass().equals(ThirdFormMultiSubjectSummary.class)) {
+                return new SimpleStringProperty("3");
+            } else {
+                return new SimpleStringProperty("4");
+            }
+        });
+
+        TableColumn<MultiSubjectSummary, String> summaryColumn = new TableColumn<>("Podsumowanie");
         summaryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().toString()));
         summaryColumn.setPrefWidth(1200);
 
@@ -106,6 +119,7 @@ public class MultiSubjectViewController implements Initializable {
 
         // Add the columns to the TableView
         summaryTable.getColumns().addAll(
+                formNumber,
                 summaryColumn,
                 degreeOfTruthColumn
         );
@@ -167,7 +181,6 @@ public class MultiSubjectViewController implements Initializable {
             objects2 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Benzyna")).toList();
         }
 
-        List<Label> emptyQualifiers = new ArrayList<>();
         for (int i = 1; i < summarizers.size() + 1; i++) {
             for (int j = 0; j < summarizers.size(); j++) {
                 List<Label> tempSumList = new ArrayList<>();

@@ -204,7 +204,7 @@ public class MainViewController implements Initializable {
     @FXML
     private void initSummaryTableColumns() {
         // Create new columns
-        TableColumn<SingleSubjectSummary, String> summaryColumn = new TableColumn<>("Summary");
+        TableColumn<SingleSubjectSummary, String> summaryColumn = new TableColumn<>("Podsumowanie");
         summaryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().toString()));
         summaryColumn.setPrefWidth(500);
 
