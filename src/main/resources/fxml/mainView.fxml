@@ -10,62 +10,51 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ksr.view.controllers.MainViewController">
-    <children>
-        <TabPane layoutX="-3.0" prefHeight="750.0" prefWidth="1400.0" tabClosingPolicy="UNAVAILABLE">
-            <tabs>
-                <Tab text="Podsumowania">
-                    <content>
-                        <AnchorPane>
-                            <children>
-                                <TreeView fx:id="summarizersTreeView" layoutX="12.0" layoutY="37.0" prefHeight="375.0" prefWidth="275.0" />
-                                <Text layoutX="103.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sumaryzatory" />
-                                <Text layoutX="378.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kwalifikatory" />
-                                <TreeView fx:id="qualifiersTreeView" layoutX="311.0" layoutY="37.0" prefHeight="375.0" prefWidth="275.0" />
-                                <TableView fx:id="summaryTable" layoutX="12.0" layoutY="423.0" prefHeight="298.0" prefWidth="1400.0" />
-                        <AnchorPane layoutX="625.0" layoutY="37.0">
-                           <children>
-                                      <Button layoutX="46.0" layoutY="350.0" mnemonicParsing="false" onAction="#generateSummaryBtn_onAction" text="Generuj" />
-                                      <Text layoutX="5.0" layoutY="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T1" />
-                                      <Text layoutX="5.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T2" />
-                                      <Text layoutX="4.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T3" />
-                                      <Text layoutX="5.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T4" />
-                                      <Text layoutX="5.0" layoutY="116.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T5" />
-                                      <Text layoutX="5.0" layoutY="145.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T6" />
-                                      <Text layoutX="5.0" layoutY="176.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T7" />
-                                      <Text layoutX="5.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T8" />
-                                      <Text layoutX="5.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T9" />
-                                      <Text layoutY="272.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T10" wrappingWidth="52.9921875" />
-                                      <Text layoutX="1.0" layoutY="303.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T11" />
-                                      <TextField fx:id="weightT1TF" layoutX="58.0" prefHeight="25.0" prefWidth="47.0" />
-                                      <TextField fx:id="weightT2TF" layoutX="58.0" layoutY="25.0" prefHeight="25.0" prefWidth="46.0" />
-                                      <TextField fx:id="weightT10TF" layoutX="58.0" layoutY="268.0" prefHeight="25.0" prefWidth="45.0" />
-                                      <TextField fx:id="weightT3TF" layoutX="58.0" layoutY="52.0" prefHeight="25.0" prefWidth="48.0" />
-                                      <TextField fx:id="weightT4TF" layoutX="58.0" layoutY="81.0" prefHeight="25.0" prefWidth="45.0" />
-                                      <TextField fx:id="weightT5TF" layoutX="58.0" layoutY="112.0" prefHeight="25.0" prefWidth="45.0" />
-                                      <TextField fx:id="weightT6TF" layoutX="58.0" layoutY="141.0" prefHeight="25.0" prefWidth="46.0" />
-                                      <TextField fx:id="weightT7TF" layoutX="58.0" layoutY="172.0" prefHeight="25.0" prefWidth="47.0" />
-                                      <TextField fx:id="weightT8TF" layoutX="58.0" layoutY="204.0" prefHeight="25.0" prefWidth="46.0" />
-                                      <TextField fx:id="weightT9TF" layoutX="58.0" layoutY="237.0" prefHeight="25.0" prefWidth="45.0" />
-                                      <TextField fx:id="weightT11TF" layoutX="58.0" layoutY="299.0" prefHeight="25.0" prefWidth="45.0" />
-                           </children>
-                        </AnchorPane>
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
-                <Tab text="Podsumowania dwupodmiotowe">
-                    <fx:include fx:id="fooTabPage" source="multiSubjectView.fxml" />
-                </Tab>
-                <Tab text="Baza danych">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <TableView fx:id="carDetailsTable" prefHeight="750.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
-    </children>
+    <TabPane layoutX="-3.0" prefHeight="750.0" prefWidth="1400.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab onSelectionChanged="#refresh" text="Podsumowania">
+            <AnchorPane>
+                <TreeView fx:id="summarizersTreeView" layoutX="12.0" layoutY="37.0" prefHeight="375.0" prefWidth="275.0" />
+                <Text layoutX="103.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sumaryzatory" />
+                <Text layoutX="378.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kwalifikatory" />
+                <TreeView fx:id="qualifiersTreeView" layoutX="311.0" layoutY="37.0" prefHeight="375.0" prefWidth="275.0" />
+                <TableView fx:id="summaryTable" layoutX="12.0" layoutY="423.0" prefHeight="298.0" prefWidth="1400.0" />
+                <AnchorPane layoutX="625.0" layoutY="37.0">
+                    <Button layoutX="46.0" layoutY="350.0" mnemonicParsing="false" onAction="#generateSummaryBtn_onAction" text="Generuj" />
+                    <Text layoutX="5.0" layoutY="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T1" />
+                    <Text layoutX="5.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T2" />
+                    <Text layoutX="4.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T3" />
+                    <Text layoutX="5.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T4" />
+                    <Text layoutX="5.0" layoutY="116.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T5" />
+                    <Text layoutX="5.0" layoutY="145.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T6" />
+                    <Text layoutX="5.0" layoutY="176.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T7" />
+                    <Text layoutX="5.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T8" />
+                    <Text layoutX="5.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T9" />
+                    <Text layoutY="272.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T10" wrappingWidth="52.9921875" />
+                    <Text layoutX="1.0" layoutY="303.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="waga T11" />
+                    <TextField fx:id="weightT1TF" layoutX="58.0" prefHeight="25.0" prefWidth="47.0" />
+                    <TextField fx:id="weightT2TF" layoutX="58.0" layoutY="25.0" prefHeight="25.0" prefWidth="46.0" />
+                    <TextField fx:id="weightT10TF" layoutX="58.0" layoutY="268.0" prefHeight="25.0" prefWidth="45.0" />
+                    <TextField fx:id="weightT3TF" layoutX="58.0" layoutY="52.0" prefHeight="25.0" prefWidth="48.0" />
+                    <TextField fx:id="weightT4TF" layoutX="58.0" layoutY="81.0" prefHeight="25.0" prefWidth="45.0" />
+                    <TextField fx:id="weightT5TF" layoutX="58.0" layoutY="112.0" prefHeight="25.0" prefWidth="45.0" />
+                    <TextField fx:id="weightT6TF" layoutX="58.0" layoutY="141.0" prefHeight="25.0" prefWidth="46.0" />
+                    <TextField fx:id="weightT7TF" layoutX="58.0" layoutY="172.0" prefHeight="25.0" prefWidth="47.0" />
+                    <TextField fx:id="weightT8TF" layoutX="58.0" layoutY="204.0" prefHeight="25.0" prefWidth="46.0" />
+                    <TextField fx:id="weightT9TF" layoutX="58.0" layoutY="237.0" prefHeight="25.0" prefWidth="45.0" />
+                    <TextField fx:id="weightT11TF" layoutX="58.0" layoutY="299.0" prefHeight="25.0" prefWidth="45.0" />
+                </AnchorPane>
+            </AnchorPane>
+        </Tab>
+        <Tab text="Podsumowania dwupodmiotowe">
+            <fx:include source="multiSubjectView.fxml" />
+        </Tab>
+        <Tab text="Zaawansowane">
+            <fx:include source="advancedView.fxml" />
+        </Tab>
+        <Tab text="Baza danych">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <TableView fx:id="carDetailsTable" prefHeight="750.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </AnchorPane>
+        </Tab>
+    </TabPane>
 </AnchorPane>

@@ -7,21 +7,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ksr.view.controllers.MultiSubjectViewController">
-   <children>
-      <AnchorPane layoutX="20.0" layoutY="5.0">
-         <children>
-            <TreeView fx:id="summarizersTreeView" layoutX="12.0" layoutY="37.0" prefHeight="375.0" prefWidth="275.0" />
-            <Text layoutX="103.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sumaryzatory" />
-            <Text layoutX="378.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kwalifikatory" />
-            <TreeView fx:id="qualifiersTreeView" layoutX="311.0" layoutY="37.0" prefHeight="375.0" prefWidth="275.0" />
-            <TableView fx:id="summaryTable" layoutX="12.0" layoutY="423.0" prefHeight="298.0" prefWidth="1400.0" />
-            <ComboBox fx:id="firstSubject_CB" layoutX="637.0" layoutY="120.0" prefWidth="150.0" />
-            <ComboBox fx:id="secondSubject_CB" layoutX="827.0" layoutY="120.0" prefWidth="150.0" />
-            <Text layoutX="695.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="podmiot 1" />
-            <Text layoutX="862.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="podmiot 2" />
-            <Button layoutX="775.0" layoutY="323.0" mnemonicParsing="false" onAction="#generateButton_OnAction" text="Generuj" />
-         </children>
-      </AnchorPane>
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ksr.view.controllers.MultiSubjectViewController">
+    <AnchorPane layoutX="20.0" layoutY="5.0">
+        <TreeView fx:id="summarizersTreeView" layoutX="12.0" layoutY="37.0" prefHeight="375.0" prefWidth="275.0"/>
+        <Text layoutX="103.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sumaryzatory"/>
+        <Text layoutX="378.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kwalifikatory"/>
+        <TreeView fx:id="qualifiersTreeView" layoutX="311.0" layoutY="37.0" prefHeight="375.0" prefWidth="275.0"/>
+        <TableView fx:id="summaryTable" layoutX="12.0" layoutY="423.0" prefHeight="298.0" prefWidth="1400.0"/>
+        <ComboBox fx:id="firstSubject_CB" layoutX="637.0" layoutY="120.0" prefWidth="150.0"/>
+        <ComboBox fx:id="secondSubject_CB" layoutX="827.0" layoutY="120.0" prefWidth="150.0"/>
+        <Text layoutX="695.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="podmiot 1"/>
+        <Text layoutX="862.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="podmiot 2"/>
+        <Button layoutX="775.0" layoutY="323.0" mnemonicParsing="false" onAction="#generateButton_OnAction"
+                text="Generuj"/>
+        <Button layoutX="608.0" layoutY="37.0" mnemonicParsing="false" onAction="#refresh" text="Odśwież"/>
+    </AnchorPane>
 </AnchorPane>

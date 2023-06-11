@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="750.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ksr.view.controllers.AdvancedViewController">
+   <children>
+      <ComboBox fx:id="labelTypeCB" layoutX="122.0" layoutY="42.0" onAction="#labelTypeCB_onAction" prefWidth="150.0" />
+      <ComboBox fx:id="optionCB" layoutX="122.0" layoutY="78.0" prefWidth="150.0" />
+      <ComboBox fx:id="functionCB" layoutX="122.0" layoutY="118.0" onAction="#functionCB_onAction" prefWidth="150.0" />
+      <AnchorPane fx:id="membershipFunctionPane" layoutX="33.0" layoutY="164.0" prefHeight="281.0" prefWidth="374.0">
+         <children>
+            <Text layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwa etykiety" />
+            <TextField fx:id="labelNameTF" layoutX="90.0" />
+            <Text fx:id="aText" layoutX="18.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="79.74023437499994" />
+            <TextField fx:id="aTF" layoutX="112.0" layoutY="71.0" />
+            <Text fx:id="bText" layoutX="18.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="79.74023437499994" />
+            <TextField fx:id="bTF" layoutX="112.0" layoutY="106.0" />
+            <Text fx:id="cText" layoutX="18.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="79.74023437499994" />
+            <TextField fx:id="cTF" layoutX="112.0" layoutY="145.0" />
+            <Text fx:id="dText" layoutX="18.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="79.74023437499989" />
+            <TextField fx:id="dTF" layoutX="112.0" layoutY="185.0" />
+            <Button layoutX="132.0" layoutY="255.0" mnemonicParsing="false" onAction="#addNewLabel_onAction" text="Dodaj" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

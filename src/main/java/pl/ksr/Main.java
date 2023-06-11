@@ -5,11 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pl.ksr.view.Data;
 
 public class Main extends Application {
     private Parent root;
 
     public static void main(String[] args) {
+        Data.initData();
         launch(Main.class, args);
     }
 
