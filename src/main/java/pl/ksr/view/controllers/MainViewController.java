@@ -189,7 +189,10 @@ public class MainViewController implements Initializable {
         }
 
         if (qualifiers.size() == 0) { // First form.
-            generateSummariesFirstForm(Data.predefinedQuantifiers, qualifiers, summarizers);
+            List<Quantifier> quantifiers = new ArrayList<>();
+            quantifiers.addAll(Data.relativeQuantifiers);
+            quantifiers.addAll(Data.absoluteQuantifiers);
+            generateSummariesFirstForm(quantifiers, qualifiers, summarizers);
         } else { // Second form.
             List<Quantifier> quantifiers = new ArrayList<>(Data.relativeQuantifiers);
             generateSummariesSecondForm(quantifiers, qualifiers, summarizers);

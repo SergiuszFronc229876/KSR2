@@ -4,17 +4,21 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="750.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ksr.view.controllers.AdvancedViewController">
    <children>
-      <ComboBox fx:id="labelTypeCB" layoutX="122.0" layoutY="42.0" onAction="#labelTypeCB_onAction" prefWidth="150.0" />
-      <ComboBox fx:id="optionCB" layoutX="122.0" layoutY="78.0" prefWidth="150.0" />
-      <ComboBox fx:id="functionCB" layoutX="122.0" layoutY="118.0" onAction="#functionCB_onAction" prefWidth="150.0" />
-      <AnchorPane fx:id="membershipFunctionPane" layoutX="33.0" layoutY="164.0" prefHeight="281.0" prefWidth="374.0">
+      <Text layoutX="26.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Typ obiektu" wrappingWidth="93.33672714233398" />
+      <ComboBox fx:id="labelTypeCB" layoutX="151.0" layoutY="104.0" onAction="#labelTypeCB_onAction" prefWidth="150.0" />
+      <Text fx:id="objectTypeText" layoutX="26.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="93.33672714233398" />
+      <ComboBox fx:id="optionCB" layoutX="151.0" layoutY="146.0" prefWidth="150.0" />
+      <Text layoutX="26.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rodzaj funkcji" wrappingWidth="93.33672714233398" />
+      <ComboBox fx:id="functionCB" layoutX="151.0" layoutY="220.0" onAction="#functionCB_onAction" prefWidth="150.0" />
+      <AnchorPane fx:id="membershipFunctionPane" layoutX="39.0" layoutY="274.0" prefHeight="281.0" prefWidth="374.0">
          <children>
-            <Text layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwa etykiety" />
-            <TextField fx:id="labelNameTF" layoutX="90.0" />
+            <Text layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwa etykiety" />
+            <TextField fx:id="labelNameTF" layoutX="112.0" layoutY="20.0" />
             <Text fx:id="aText" layoutX="18.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="79.74023437499994" />
             <TextField fx:id="aTF" layoutX="112.0" layoutY="71.0" />
             <Text fx:id="bText" layoutX="18.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="79.74023437499994" />
@@ -24,7 +28,9 @@
             <Text fx:id="dText" layoutX="18.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="79.74023437499989" />
             <TextField fx:id="dTF" layoutX="112.0" layoutY="185.0" />
             <Button layoutX="132.0" layoutY="255.0" mnemonicParsing="false" onAction="#addNewLabel_onAction" text="Dodaj" />
+            <Button layoutX="206.0" layoutY="255.0" mnemonicParsing="false" onAction="#generateNewLabel_onAction" text="Generuj" />
          </children>
       </AnchorPane>
+      <StackPane fx:id="stackPaneChart" layoutX="349.0" layoutY="93.0" prefHeight="435.0" prefWidth="612.0" />
    </children>
 </AnchorPane>

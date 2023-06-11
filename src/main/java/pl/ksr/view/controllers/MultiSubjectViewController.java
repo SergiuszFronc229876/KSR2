@@ -147,7 +147,10 @@ public class MultiSubjectViewController implements Initializable {
             summarizers.add(findLabel(names[0], names[1]));
         }
 
-        generateSummariesMultiObject(Data.predefinedQuantifiers, qualifiers1, summarizers);
+        ArrayList<Quantifier> quantifiers = new ArrayList<>();
+        quantifiers.addAll(Data.absoluteQuantifiers);
+        quantifiers.addAll(Data.relativeQuantifiers);
+        generateSummariesMultiObject(quantifiers, qualifiers1, summarizers);
         fillSummaryTable();
     }
 
