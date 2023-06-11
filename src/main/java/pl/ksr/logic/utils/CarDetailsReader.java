@@ -28,18 +28,18 @@ public class CarDetailsReader {
                 String[] data = line.split(";");
 
                 long id = Long.parseLong(data[0]);
-                String franchiseName = data[1];
-                String modelName = data[2];
-                double price = Double.parseDouble(data[3].replace(",", "."));
-                double mileage = Double.parseDouble(data[4].replace(",", "."));
-                double horsepower = Double.parseDouble(data[5].replace(",", "."));
-                double engineDisplacement = Double.parseDouble(data[6].replace(",", "."));
-                double fuelTankVolume = Double.parseDouble(data[7].replace(",", "."));
-                double wheelbase = Double.parseDouble(data[8].replace(",", "."));
-                double torque = Double.parseDouble(data[9].replace(",", "."));
-                double length = Double.parseDouble(data[10].replace(",", "."));
-                double width = Double.parseDouble(data[11].replace(",", "."));
-                String fuelType = data[12];
+                String fuelType = data[1];
+                String franchiseName = data[2];
+                String modelName = data[3];
+                double price = Double.parseDouble(data[4].replace(",", "."));
+                double mileage = Double.parseDouble(data[5].replace(",", "."));
+                double horsepower = Double.parseDouble(data[6].replace(",", "."));
+                double engineDisplacement = Double.parseDouble(data[7].replace(",", "."));
+                double fuelTankVolume = Double.parseDouble(data[8].replace(",", "."));
+                double wheelbase = Double.parseDouble(data[9].replace(",", "."));
+                double torque = Double.parseDouble(data[10].replace(",", "."));
+                double length = Double.parseDouble(data[11].replace(",", "."));
+                double width = Double.parseDouble(data[12].replace(",", "."));
                 double fuelEconomy = Double.parseDouble(data[13].replace(",", "."));
 
                 CarDetails carDetails = new CarDetails(id, franchiseName, modelName, fuelType, price, mileage, horsepower, engineDisplacement,

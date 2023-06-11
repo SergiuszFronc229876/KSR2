@@ -39,7 +39,7 @@ public class FourthFormMultiSubjectSummary implements MultiSubjectSummary {
             }
 
         }
-        return 1 - (implication/ all.size());
+        return 1 - (implication / all.size());
     }
 
     private double lukasiewiczImplication(double a, double b) {
@@ -49,12 +49,14 @@ public class FourthFormMultiSubjectSummary implements MultiSubjectSummary {
     @Override
     public String toString() {
         String subjectName1 = carsForSubject1.get(0).getFuelType();
-        String subjectName2 =  carsForSubject2.get(0).getFuelType();
+        String subjectName2 = carsForSubject2.get(0).getFuelType();
         StringBuilder sb = new StringBuilder();
         sb.append("Więcej ")
-                .append(" samochodów z silnikiem " + subjectName1)
+                .append(" samochodów z silnikiem ")
+                .append(subjectName1)
                 .append(" niż ")
-                .append(" samochodów z silnikiem " + subjectName2)
+                .append(" samochodów z silnikiem ")
+                .append(subjectName2)
                 .append(" jest/ma ");
         for (int i = 0; i < summarizers.size(); i++) {
             Label summarizer = summarizers.get(i);

@@ -36,11 +36,9 @@ public class ThirdFormMultiSubjectSummary implements MultiSubjectSummary {
     @Override
     public String toString() {
         String subjectName1 = carsForSubject1.get(0).getFuelType();
-        String subjectName2 =  carsForSubject2.get(0).getFuelType();
+        String subjectName2 = carsForSubject2.get(0).getFuelType();
         StringBuilder sb = new StringBuilder();
-        sb.append(quantifier.getName().toUpperCase(Locale.ROOT))
-                .append(" samochodów z silnikiem " + subjectName1)
-                .append(" które są/mają ");
+        sb.append(quantifier.getName().toUpperCase(Locale.ROOT)).append(" samochodów z silnikiem " + subjectName1).append(" które są/mają ");
         for (int i = 0; i < qualifiers.size(); i++) {
             Label qualifier = qualifiers.get(i);
             sb.append(qualifier.getName().toUpperCase(Locale.ROOT)).append(" ").append(qualifier.getLinguisticVariableName().toLowerCase(Locale.ROOT));
@@ -53,8 +51,7 @@ public class ThirdFormMultiSubjectSummary implements MultiSubjectSummary {
         sb.append(" jest/ma ");
         for (int i = 0; i < summarizers.size(); i++) {
             Label summarizer = summarizers.get(i);
-            sb.append(summarizer.getName().toUpperCase(Locale.ROOT)).append(" ")
-                    .append(summarizer.getLinguisticVariableName().toLowerCase(Locale.ROOT));
+            sb.append(summarizer.getName().toUpperCase(Locale.ROOT)).append(" ").append(summarizer.getLinguisticVariableName().toLowerCase(Locale.ROOT));
             if (i + 1 < summarizers.size()) {
                 sb.append(" i ");
             }
