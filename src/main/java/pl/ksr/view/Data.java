@@ -60,10 +60,10 @@ public class Data {
         LinguisticVariable przebieg = new LinguisticVariable("Przebieg", labelsPrzebieg);
 
         //Moc silnika
-        Label slaba = new Label("słaba", "Moc silnika", new FuzzySet(new TrapezoidalFunction(20, 20, 90, 110), new ContinuousSet(20, 1000)));
-        Label umiarkowana = new Label("umiarkowana", "Moc silnika", new FuzzySet(new TriangularFunction(60, 140, 220), new ContinuousSet(20, 1000)));
-        Label mocna = new Label("mocna", "Moc silnika", new FuzzySet(new TriangularFunction(140, 220, 300), new ContinuousSet(20, 1000)));
-        Label bardzoMocna = new Label("bardzo mocna", "Moc silnika", new FuzzySet(new TrapezoidalFunction(220, 300, 800, 800), new ContinuousSet(20, 1000)));
+        Label slaba = new Label("słaba - poniżej 140", "Moc silnika", new FuzzySet(new TrapezoidalFunction(20, 20, 90, 110), new ContinuousSet(20, 1000)));
+        Label umiarkowana = new Label("standardowa - około 140", "Moc silnika", new FuzzySet(new TriangularFunction(60, 140, 220), new ContinuousSet(20, 1000)));
+        Label mocna = new Label("mocna - około 200 KM", "Moc silnika", new FuzzySet(new TriangularFunction(140, 220, 300), new ContinuousSet(20, 1000)));
+        Label bardzoMocna = new Label("bardzo mocna - powyżej 220 KM", "Moc silnika", new FuzzySet(new TrapezoidalFunction(220, 300, 800, 800), new ContinuousSet(20, 1000)));
         List<Label> labelsMoc = new ArrayList<>(List.of(slaba, umiarkowana, mocna, bardzoMocna));
         LinguisticVariable mocSilnika = new LinguisticVariable("Moc silnika", labelsMoc);
 
