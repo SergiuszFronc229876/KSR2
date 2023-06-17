@@ -17,16 +17,20 @@ import pl.ksr.logic.summarization.forms.FourthFormMultiSubjectSummary;
 import pl.ksr.logic.summarization.forms.SecondFormMultiSubjectSummary;
 import pl.ksr.logic.summarization.forms.ThirdFormMultiSubjectSummary;
 import pl.ksr.view.Data;
+import pl.ksr.view.FuelType;
 
 import java.net.URL;
 import java.util.*;
 
+import static pl.ksr.view.FuelType.DIESEL;
+import static pl.ksr.view.FuelType.GASOLINE;
+
 public class MultiSubjectViewController implements Initializable {
     private final List<MultiSubjectSummary> summaries = new ArrayList<>();
     @FXML
-    private ComboBox<String> firstSubject_CB;
+    private ComboBox<FuelType> firstSubject_CB;
     @FXML
-    private ComboBox<String> secondSubject_CB;
+    private ComboBox<FuelType> secondSubject_CB;
     @FXML
     private TreeView<String> summarizersTreeView;
     @FXML
@@ -40,23 +44,23 @@ public class MultiSubjectViewController implements Initializable {
         fillQualifiersTreeView();
         fillSummarizersTreeView();
 
-        firstSubject_CB.getItems().addAll(List.of("Diesel", "Benzyna"));
-        secondSubject_CB.getItems().addAll(List.of("Diesel", "Benzyna"));
+        firstSubject_CB.getItems().addAll(List.of(GASOLINE, DIESEL));
+        secondSubject_CB.getItems().addAll(List.of(GASOLINE, DIESEL));
 
         firstSubject_CB.setOnAction(event -> {
-            String selectedValue = firstSubject_CB.getValue();
-            if (selectedValue.equals("Diesel")) {
-                secondSubject_CB.setValue("Benzyna");
-            } else if (selectedValue.equals("Benzyna")) {
-                secondSubject_CB.setValue("Diesel");
+            FuelType selectedValue = firstSubject_CB.getValue();
+            if (selectedValue.equals(DIESEL)) {
+                secondSubject_CB.setValue(GASOLINE);
+            } else if (selectedValue.equals(GASOLINE)) {
+                secondSubject_CB.setValue(DIESEL);
             }
         });
         secondSubject_CB.setOnAction(event -> {
-            String selectedValue = secondSubject_CB.getValue();
-            if (selectedValue.equals("Diesel")) {
-                firstSubject_CB.setValue("Benzyna");
-            } else if (selectedValue.equals("Benzyna")) {
-                firstSubject_CB.setValue("Diesel");
+            FuelType selectedValue = secondSubject_CB.getValue();
+            if (selectedValue.equals(DIESEL)) {
+                firstSubject_CB.setValue(GASOLINE);
+            } else if (selectedValue.equals(GASOLINE)) {
+                firstSubject_CB.setValue(DIESEL);
             }
         });
     }
@@ -173,12 +177,12 @@ public class MultiSubjectViewController implements Initializable {
         List<CarDetails> objects1;
         List<CarDetails> objects2;
 
-        if (firstSubject_CB.getValue().equals("Benzyna")) {
-            objects1 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Benzyna")).toList();
-            objects2 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Diesel")).toList();
+        if (firstSubject_CB.getValue().equals(GASOLINE)) {
+            objects1 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals(GASOLINE.toString())).toList();
+            objects2 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals(DIESEL.toString())).toList();
         } else {
-            objects1 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Diesel")).toList();
-            objects2 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals("Benzyna")).toList();
+            objects1 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals(DIESEL.toString())).toList();
+            objects2 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals(GASOLINE.toString())).toList();
         }
 
         for (int i = 1; i < summarizers.size() + 1; i++) {
