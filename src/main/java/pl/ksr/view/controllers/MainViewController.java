@@ -19,7 +19,6 @@ import pl.ksr.view.Data;
 import pl.ksr.view.model.SingleSubjectSummaryDTO;
 
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.util.*;
 
 public class MainViewController implements Initializable {
@@ -403,12 +402,6 @@ public class MainViewController implements Initializable {
     }
 
     public static class RoundedTableCell<S, T> extends TableCell<S, T> {
-        private final DecimalFormat decimalFormat;
-
-        public RoundedTableCell() {
-            decimalFormat = new DecimalFormat("0.00");
-        }
-
         @Override
         protected void updateItem(T item, boolean empty) {
             super.updateItem(item, empty);
@@ -416,7 +409,18 @@ public class MainViewController implements Initializable {
             if (item == null || empty) {
                 setText(null);
             } else {
-                setText(decimalFormat.format(item));
+                if (item instanceof Double) {
+                    double value = (double) item;
+                    if (value < 0.01 && value != 0) {
+                        setText(">0.00");
+                    } else if (value > 0.99 && value != 1) {
+                        setText("<1.00");
+                    } else {
+                        setText(String.format("%.2f", value));
+                    }
+                } else {
+                    setText(item.toString());
+                }
             }
         }
     }
