@@ -17,10 +17,13 @@ public class CarDetailsReader {
         try {
             // Read the data.csv file from the resources directory
             InputStream inputStream = CarDetailsReader.class.getResourceAsStream("/data.csv");
+            if (inputStream == null) {
+                throw new RuntimeException("File \"data.csv\" is missing");
+            }
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
             // Skip the header line if it exists
-            String headerLine = reader.readLine();
+            reader.readLine();
 
             String line;
             while ((line = reader.readLine()) != null) {
@@ -41,9 +44,10 @@ public class CarDetailsReader {
                 double length = Double.parseDouble(data[11].replace(",", "."));
                 double width = Double.parseDouble(data[12].replace(",", "."));
                 double fuelEconomy = Double.parseDouble(data[13].replace(",", "."));
+                int year = Integer.parseInt(data[14]);
 
                 CarDetails carDetails = new CarDetails(id, franchiseName, modelName, fuelType, price, mileage, horsepower, engineDisplacement,
-                        fuelTankVolume, wheelbase, torque, length, width, fuelEconomy);
+                        fuelTankVolume, wheelbase, torque, length, width, fuelEconomy, year);
 
                 carDetailsList.add(carDetails);
             }

@@ -21,4 +21,5 @@ public class CarDetails {
     private double length;
     private double width;
     private double fuelEconomy;
+    private int year;
 }
