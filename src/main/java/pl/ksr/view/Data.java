@@ -100,8 +100,8 @@ public class Data {
 
         //Zbiornik Paliwa
         Label mala = new Label("pozwalająca przejechać około 500 km z średnim spalaniem wokolicach 5 l/100km", "Pojemność zbiornika paliwa", new FuzzySet(new GaussianFunction(38, 4, 20, 58), new ContinuousSet(20, 160)));
-        Label standardowa = new Label("pozwalająca przejechać około 800 km z średnim spalaniem wokolicach 8 l/100km", "Pojemność zbiornika paliwa", new FuzzySet(new GaussianFunction(60, 9, 20, 100), new ContinuousSet(20, 160)));
-        Label spora = new Label("pozwalająca przejechać około 1200 km z średnim spalaniemw okolicach 10 l/100km", "Pojemność zbiornika paliwa", new FuzzySet(new GaussianFunction(90, 10, 50, 130), new ContinuousSet(20, 160)));
+        Label standardowa = new Label("pozwalająca przejechać około 750 km z średnim spalaniem wokolicach 8 l/100km", "Pojemność zbiornika paliwa", new FuzzySet(new GaussianFunction(60, 9, 20, 100), new ContinuousSet(20, 160)));
+        Label spora = new Label("pozwalająca przejechać około 900 km z średnim spalaniemw okolicach 10 l/100km", "Pojemność zbiornika paliwa", new FuzzySet(new GaussianFunction(90, 10, 50, 130), new ContinuousSet(20, 160)));
         Label najwieksza = new Label("pozwalająca przejechać około 1200 km z średnim spalaniemw okolicach 12 l/100km", "Pojemność zbiornika paliwa", new FuzzySet(new GaussianFunction(120, 8, 80, 160), new ContinuousSet(20, 160)));
         List<Label> labelsZbiornik = new ArrayList<>(List.of(mala, standardowa, spora, najwieksza));
         LinguisticVariable pojemnoscZbiornikaPaliwa = new LinguisticVariable("Pojemność zbiornika paliwa", labelsZbiornik);
