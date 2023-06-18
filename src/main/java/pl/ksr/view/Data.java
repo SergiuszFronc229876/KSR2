@@ -130,12 +130,12 @@ public class Data {
         LinguisticVariable szerokosc = new LinguisticVariable("Szerokość", labelsSzerokosc);
 
         //Rocznik
-        Label rocznik5 = new Label("pięcioletni", "Rocznik", new FuzzySet(new TriangularFunction(2016, 2020, 2023), new ContinuousSet(1996, 2023)));
-        Label rocznik10 = new Label("dziesięcioletni", "Rocznik", new FuzzySet(new TriangularFunction(2011, 2015, 2019), new ContinuousSet(1996, 2023)));
-        Label rocznik15 = new Label("piętnastoletni", "Rocznik", new FuzzySet(new TriangularFunction(2006, 2010, 2014), new ContinuousSet(1996, 2023)));
-        Label rocznik20 = new Label("dwudziestoletni", "Rocznik", new FuzzySet(new TriangularFunction(2001, 2005, 2009), new ContinuousSet(1996, 2023)));
-        Label rocznik25 = new Label("dwudziestopięcioletni", "Rok produkcji", new FuzzySet(new TriangularFunction(1996, 2000, 2004), new ContinuousSet(1996, 2023)));
-        List<Label> labelRocznik = new ArrayList<>(List.of(rocznik5, rocznik10, rocznik15, rocznik20, rocznik25));
+        Label piecioletni = new Label("pięcioletni", "Rok produkcji", new FuzzySet(new TriangularFunction(2016, 2020, 2023), new ContinuousSet(1996, 2023)));
+        Label dziesiecioletni = new Label("dziesięcioletni", "Rok produkcji", new FuzzySet(new TriangularFunction(2011, 2015, 2019), new ContinuousSet(1996, 2023)));
+        Label pietnastoletni = new Label("piętnastoletni", "Rok produkcji", new FuzzySet(new TriangularFunction(2006, 2010, 2014), new ContinuousSet(1996, 2023)));
+        Label dwudziestoletni = new Label("dwudziestoletni", "Rok produkcji", new FuzzySet(new TriangularFunction(2001, 2005, 2009), new ContinuousSet(1996, 2023)));
+        Label dwudziestopiecioletni = new Label("dwudziestopięcioletni", "Rok produkcji", new FuzzySet(new TriangularFunction(1996, 2000, 2004), new ContinuousSet(1996, 2023)));
+        List<Label> labelRocznik = new ArrayList<>(List.of(piecioletni, dziesiecioletni, pietnastoletni, dwudziestoletni, dwudziestopiecioletni));
         LinguisticVariable rocznik = new LinguisticVariable("Rok produkcji", labelRocznik);
 
         //Zmienne lingwistyczne

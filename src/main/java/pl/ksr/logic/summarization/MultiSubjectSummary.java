@@ -19,7 +19,7 @@ public interface MultiSubjectSummary {
             case "Rozstaw osi" -> c.getWheelbase();
             case "Moment obrotowy" -> c.getTorque();
             case "Szerokość" -> c.getWidth();
-            case "Rocznik" -> c.getYear();
+            case "Rok produkcji" -> c.getYear();
             default -> throw new IllegalStateException(String.format("Wrong label name: %s", l.getName()));
         };
     }

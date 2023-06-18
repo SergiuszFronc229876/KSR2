@@ -193,11 +193,11 @@ public class MultiSubjectViewController implements Initializable {
         List<CarDetails> objects2;
 
         if (firstSubject_CB.getValue().equals(GASOLINE)) {
-            objects1 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals(GASOLINE.toString())).toList();
-            objects2 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals(DIESEL.toString())).toList();
+            objects1 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals(GASOLINE.getDbName())).toList();
+            objects2 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals(DIESEL.getDbName())).toList();
         } else {
-            objects1 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals(DIESEL.toString())).toList();
-            objects2 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals(GASOLINE.toString())).toList();
+            objects1 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals(DIESEL.getDbName())).toList();
+            objects2 = Data.carDetailsList.stream().filter(carDetails -> carDetails.getFuelType().equals(GASOLINE.getDbName())).toList();
         }
 
         for (int i = 1; i < summarizers.size() + 1; i++) {

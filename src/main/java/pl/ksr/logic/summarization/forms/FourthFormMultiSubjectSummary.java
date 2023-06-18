@@ -3,7 +3,6 @@ package pl.ksr.logic.summarization.forms;
 import pl.ksr.logic.model.CarDetails;
 import pl.ksr.logic.summarization.Label;
 import pl.ksr.logic.summarization.MultiSubjectSummary;
-import pl.ksr.logic.summarization.Quantifier;
 
 import java.util.List;
 import java.util.Locale;
@@ -25,7 +24,7 @@ public class FourthFormMultiSubjectSummary implements MultiSubjectSummary {
         double implication = 0.0;
         // A zawiera B + B zawiera A: logic 1,1
         // A zawiera B + B nie zawiera A: logic 1,0
-        // A nie zawiera B + B  zawiera A: logic 0,1
+        // A nie zawiera B + B zawiera A: logic 0,1
 
         List<CarDetails> all = Stream.concat(carsForSubject1.stream(), carsForSubject2.stream()).toList();
         for (CarDetails c : all) {
