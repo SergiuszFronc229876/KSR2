@@ -31,9 +31,9 @@ public class CarDetailsReader {
                 String[] data = line.split(";");
 
                 long id = Long.parseLong(data[0]);
-                String fuelType = data[1];
-                String franchiseName = data[2];
-                String modelName = data[3];
+                String franchiseName = data[1];
+                String modelName = data[2];
+                String fuelType = data[3];
                 double price = Double.parseDouble(data[4].replace(",", "."));
                 double mileage = Double.parseDouble(data[5].replace(",", "."));
                 double horsepower = Double.parseDouble(data[6].replace(",", "."));
