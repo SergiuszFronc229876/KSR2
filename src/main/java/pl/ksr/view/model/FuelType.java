@@ -1,4 +1,4 @@
-package pl.ksr.view;
+package pl.ksr.view.model;
 
 public enum FuelType {
     GASOLINE("Benzyna"),

@@ -1,10 +1,10 @@
 package pl.ksr.view.controllers;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -16,6 +16,7 @@ import pl.ksr.logic.summarization.*;
 import pl.ksr.logic.summarization.forms.FirstFormSingleSubjectSummary;
 import pl.ksr.logic.summarization.forms.SecondFormSingleSubjectSummary;
 import pl.ksr.view.Data;
+import pl.ksr.view.model.SingleSubjectSummaryDTO;
 
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -45,7 +46,7 @@ public class MainViewController implements Initializable {
     @FXML
     private TextField weightT11TF;
     @FXML
-    private TableView<SingleSubjectSummary> summaryTable;
+    private TableView<SingleSubjectSummaryDTO> summaryTable;
     @FXML
     private TableView<CarDetails> carDetailsTable;
     @FXML
@@ -204,56 +205,56 @@ public class MainViewController implements Initializable {
     @FXML
     private void initSummaryTableColumns() {
         // Create new columns
-        TableColumn<SingleSubjectSummary, String> summaryColumn = new TableColumn<>("Podsumowanie");
-        summaryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().toString()));
+        TableColumn<SingleSubjectSummaryDTO, String> summaryColumn = new TableColumn<>("Podsumowanie");
+        summaryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().textValue()));
         summaryColumn.setPrefWidth(500);
 
-        TableColumn<SingleSubjectSummary, Double> goodnessOfSummaryColumn = new TableColumn<>("T");
-        goodnessOfSummaryColumn.setCellValueFactory(new PropertyValueFactory<>("goodnessOfSummary"));
+        TableColumn<SingleSubjectSummaryDTO, Double> goodnessOfSummaryColumn = new TableColumn<>("T");
+        goodnessOfSummaryColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().goodnessOfSummary()).asObject());
         goodnessOfSummaryColumn.setCellFactory(column -> new RoundedTableCell<>());
 
-        TableColumn<SingleSubjectSummary, Double> degreeOfTruthColumn = new TableColumn<>("T1");
-        degreeOfTruthColumn.setCellValueFactory(new PropertyValueFactory<>("degreeOfTruth_T1"));
+        TableColumn<SingleSubjectSummaryDTO, Double> degreeOfTruthColumn = new TableColumn<>("T1");
+        degreeOfTruthColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().degreeOfTruth_T1()).asObject());
         degreeOfTruthColumn.setCellFactory(column -> new RoundedTableCell<>());
 
-        TableColumn<SingleSubjectSummary, Double> degreeOfImprecisionColumn = new TableColumn<>("T2");
-        degreeOfImprecisionColumn.setCellValueFactory(new PropertyValueFactory<>("degreeOfImprecision_T2"));
+        TableColumn<SingleSubjectSummaryDTO, Double> degreeOfImprecisionColumn = new TableColumn<>("T2");
+        degreeOfImprecisionColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().degreeOfImprecision_T2()).asObject());
         degreeOfImprecisionColumn.setCellFactory(column -> new RoundedTableCell<>());
 
-        TableColumn<SingleSubjectSummary, Double> degreeOfCoveringColumn = new TableColumn<>("T3");
-        degreeOfCoveringColumn.setCellValueFactory(new PropertyValueFactory<>("degreeOfCovering_T3"));
+        TableColumn<SingleSubjectSummaryDTO, Double> degreeOfCoveringColumn = new TableColumn<>("T3");
+        degreeOfCoveringColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().degreeOfCovering_T3()).asObject());
         degreeOfCoveringColumn.setCellFactory(column -> new RoundedTableCell<>());
 
-        TableColumn<SingleSubjectSummary, Double> degreeOfAppropriatenessColumn = new TableColumn<>("T4");
-        degreeOfAppropriatenessColumn.setCellValueFactory(new PropertyValueFactory<>("degreeOfAppropriateness_T4"));
+        TableColumn<SingleSubjectSummaryDTO, Double> degreeOfAppropriatenessColumn = new TableColumn<>("T4");
+        degreeOfAppropriatenessColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().degreeOfAppropriateness_T4()).asObject());
         degreeOfAppropriatenessColumn.setCellFactory(column -> new RoundedTableCell<>());
 
-        TableColumn<SingleSubjectSummary, Double> degreeOfSummaryColumn = new TableColumn<>("T5");
-        degreeOfSummaryColumn.setCellValueFactory(new PropertyValueFactory<>("degreeOfSummary_T5"));
+        TableColumn<SingleSubjectSummaryDTO, Double> degreeOfSummaryColumn = new TableColumn<>("T5");
+        degreeOfSummaryColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().degreeOfSummary_T5()).asObject());
         degreeOfSummaryColumn.setCellFactory(column -> new RoundedTableCell<>());
 
-        TableColumn<SingleSubjectSummary, Double> degreeOfQuantifierImprecisionColumn = new TableColumn<>("T6");
-        degreeOfQuantifierImprecisionColumn.setCellValueFactory(new PropertyValueFactory<>("degreeOfQuantifierImprecision_T6"));
+        TableColumn<SingleSubjectSummaryDTO, Double> degreeOfQuantifierImprecisionColumn = new TableColumn<>("T6");
+        degreeOfQuantifierImprecisionColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().degreeOfQuantifierImprecision_T6()).asObject());
         degreeOfQuantifierImprecisionColumn.setCellFactory(column -> new RoundedTableCell<>());
 
-        TableColumn<SingleSubjectSummary, Double> degreeOfQuantifierCardinalityColumn = new TableColumn<>("T7");
-        degreeOfQuantifierCardinalityColumn.setCellValueFactory(new PropertyValueFactory<>("degreeOfQuantifierCardinality_T7"));
+        TableColumn<SingleSubjectSummaryDTO, Double> degreeOfQuantifierCardinalityColumn = new TableColumn<>("T7");
+        degreeOfQuantifierCardinalityColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().degreeOfQuantifierCardinality_T7()).asObject());
         degreeOfQuantifierCardinalityColumn.setCellFactory(column -> new RoundedTableCell<>());
 
-        TableColumn<SingleSubjectSummary, Double> degreeOfSummarizerCardinalityColumn = new TableColumn<>("T8");
-        degreeOfSummarizerCardinalityColumn.setCellValueFactory(new PropertyValueFactory<>("degreeOfSummarizerCardinality_T8"));
+        TableColumn<SingleSubjectSummaryDTO, Double> degreeOfSummarizerCardinalityColumn = new TableColumn<>("T8");
+        degreeOfSummarizerCardinalityColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().degreeOfSummarizerCardinality_T8()).asObject());
         degreeOfSummarizerCardinalityColumn.setCellFactory(column -> new RoundedTableCell<>());
 
-        TableColumn<SingleSubjectSummary, Double> degreeOfQualifierImprecisionColumn = new TableColumn<>("T9");
-        degreeOfQualifierImprecisionColumn.setCellValueFactory(new PropertyValueFactory<>("degreeOfQualifierImprecision_T9"));
+        TableColumn<SingleSubjectSummaryDTO, Double> degreeOfQualifierImprecisionColumn = new TableColumn<>("T9");
+        degreeOfQualifierImprecisionColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().degreeOfQualifierImprecision_T9()).asObject());
         degreeOfQualifierImprecisionColumn.setCellFactory(column -> new RoundedTableCell<>());
 
-        TableColumn<SingleSubjectSummary, Double> degreeOfQualifierCardinalityColumn = new TableColumn<>("T10");
-        degreeOfQualifierCardinalityColumn.setCellValueFactory(new PropertyValueFactory<>("degreeOfQualifierCardinality_T10"));
+        TableColumn<SingleSubjectSummaryDTO, Double> degreeOfQualifierCardinalityColumn = new TableColumn<>("T10");
+        degreeOfQualifierCardinalityColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().degreeOfQualifierCardinality_T10()).asObject());
         degreeOfQualifierCardinalityColumn.setCellFactory(column -> new RoundedTableCell<>());
 
-        TableColumn<SingleSubjectSummary, Double> lengthOfQualifierColumn = new TableColumn<>("T11");
-        lengthOfQualifierColumn.setCellValueFactory(new PropertyValueFactory<>("lengthOfQualifier_T11"));
+        TableColumn<SingleSubjectSummaryDTO, Double> lengthOfQualifierColumn = new TableColumn<>("T11");
+        lengthOfQualifierColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().lengthOfQualifier_T11()).asObject());
         lengthOfQualifierColumn.setCellFactory(column -> new RoundedTableCell<>());
 
         // Add the columns to the TableView
@@ -275,9 +276,28 @@ public class MainViewController implements Initializable {
     }
 
     private void fillSummaryTable() {
+        ArrayList<SingleSubjectSummaryDTO> summariesDTO = new ArrayList<>();
+        for (SingleSubjectSummary summary : summaries) {
+            summariesDTO.add(new SingleSubjectSummaryDTO(
+                    summary.toString(),
+                    summary.getGoodnessOfSummary(),
+                    summary.getDegreeOfTruth_T1(),
+                    summary.getDegreeOfImprecision_T2(),
+                    summary.getDegreeOfCovering_T3(),
+                    summary.getDegreeOfAppropriateness_T4(),
+                    summary.getDegreeOfSummary_T5(),
+                    summary.getDegreeOfQuantifierImprecision_T6(),
+                    summary.getDegreeOfQuantifierCardinality_T7(),
+                    summary.getDegreeOfSummarizerCardinality_T8(),
+                    summary.getDegreeOfQualifierImprecision_T9(),
+                    summary.getDegreeOfQualifierCardinality_T10(),
+                    summary.getLengthOfQualifier_T11()
+            ));
+        }
+
         summaryTable.getItems().clear();
-        ObservableList<SingleSubjectSummary> summaryList = FXCollections.observableArrayList();
-        summaryList.addAll(summaries);
+        ObservableList<SingleSubjectSummaryDTO> summaryList = FXCollections.observableArrayList();
+        summaryList.addAll(summariesDTO);
         summaryTable.setItems(summaryList);
     }
 

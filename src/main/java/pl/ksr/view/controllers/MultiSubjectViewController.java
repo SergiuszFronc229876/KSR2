@@ -1,14 +1,17 @@
 package pl.ksr.view.controllers;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTreeCell;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import pl.ksr.logic.model.CarDetails;
 import pl.ksr.logic.summarization.Label;
 import pl.ksr.logic.summarization.*;
@@ -17,16 +20,16 @@ import pl.ksr.logic.summarization.forms.FourthFormMultiSubjectSummary;
 import pl.ksr.logic.summarization.forms.SecondFormMultiSubjectSummary;
 import pl.ksr.logic.summarization.forms.ThirdFormMultiSubjectSummary;
 import pl.ksr.view.Data;
-import pl.ksr.view.FuelType;
+import pl.ksr.view.model.FuelType;
+import pl.ksr.view.model.MultiSubjectSummaryDTO;
 
 import java.net.URL;
 import java.util.*;
 
-import static pl.ksr.view.FuelType.DIESEL;
-import static pl.ksr.view.FuelType.GASOLINE;
+import static pl.ksr.view.model.FuelType.DIESEL;
+import static pl.ksr.view.model.FuelType.GASOLINE;
 
 public class MultiSubjectViewController implements Initializable {
-    private final List<MultiSubjectSummary> summaries = new ArrayList<>();
     @FXML
     private ComboBox<FuelType> firstSubject_CB;
     @FXML
@@ -36,7 +39,9 @@ public class MultiSubjectViewController implements Initializable {
     @FXML
     private TreeView<String> qualifiersTreeView;
     @FXML
-    private TableView<MultiSubjectSummary> summaryTable;
+    private TableView<MultiSubjectSummaryDTO> summaryTable;
+
+    private final List<MultiSubjectSummary> summaries = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -100,25 +105,17 @@ public class MultiSubjectViewController implements Initializable {
 
     public void initSummaryTableColumns() {
         // Create new columns
-        TableColumn<MultiSubjectSummary, String> formNumber = new TableColumn<>("Numer formy");
-        formNumber.setCellValueFactory(cellData -> {
-            if (cellData.getValue().getClass().equals(FirstFormMultiSubjectSummary.class)) {
-                return new SimpleStringProperty("1");
-            } else if (cellData.getValue().getClass().equals(SecondFormMultiSubjectSummary.class)) {
-                return new SimpleStringProperty("2");
-            } else if (cellData.getValue().getClass().equals(ThirdFormMultiSubjectSummary.class)) {
-                return new SimpleStringProperty("3");
-            } else {
-                return new SimpleStringProperty("4");
-            }
-        });
+        TableColumn<MultiSubjectSummaryDTO, Integer> formNumber = new TableColumn<>("Numer formy");
+        formNumber.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().formNumber()).asObject());
+        formNumber.setCellFactory(column -> new CenteredTableCell<>());
+        formNumber.setPrefWidth(100);
 
-        TableColumn<MultiSubjectSummary, String> summaryColumn = new TableColumn<>("Podsumowanie");
-        summaryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().toString()));
+        TableColumn<MultiSubjectSummaryDTO, String> summaryColumn = new TableColumn<>("Podsumowanie");
+        summaryColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().textValue()));
         summaryColumn.setPrefWidth(1200);
 
-        TableColumn<MultiSubjectSummary, Double> degreeOfTruthColumn = new TableColumn<>("T1");
-        degreeOfTruthColumn.setCellValueFactory(new PropertyValueFactory<>("degreeOfTruth_T1"));
+        TableColumn<MultiSubjectSummaryDTO, Double> degreeOfTruthColumn = new TableColumn<>("T1");
+        degreeOfTruthColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().degreeOfTruth_T1()).asObject());
         degreeOfTruthColumn.setCellFactory(column -> new MainViewController.RoundedTableCell<>());
 
         // Add the columns to the TableView
@@ -130,9 +127,27 @@ public class MultiSubjectViewController implements Initializable {
     }
 
     private void fillSummaryTable() {
+        ArrayList<MultiSubjectSummaryDTO> summariesDTO = new ArrayList<>();
+        for (MultiSubjectSummary summary : summaries) {
+            int formNumber;
+            if (summary.getClass() == FirstFormMultiSubjectSummary.class) {
+                formNumber = 1;
+            } else if (summary.getClass() == SecondFormMultiSubjectSummary.class) {
+                formNumber = 2;
+            } else if (summary.getClass() == ThirdFormMultiSubjectSummary.class) {
+                formNumber = 3;
+            } else {
+                formNumber = 4;
+            }
+            summariesDTO.add(new MultiSubjectSummaryDTO(
+                    formNumber,
+                    summary.toString(),
+                    summary.getDegreeOfTruth_T1()
+            ));
+        }
         summaryTable.getItems().clear();
-        ObservableList<MultiSubjectSummary> summaryList = FXCollections.observableArrayList();
-        summaryList.addAll(summaries);
+        ObservableList<MultiSubjectSummaryDTO> summaryList = FXCollections.observableArrayList();
+        summaryList.addAll(summariesDTO);
         summaryTable.setItems(summaryList);
     }
 
@@ -282,5 +297,12 @@ public class MultiSubjectViewController implements Initializable {
     private void refresh() {
         fillQualifiersTreeView();
         fillSummarizersTreeView();
+    }
+
+    static class CenteredTableCell<T, S> extends TextFieldTableCell<T, S> {
+        public CenteredTableCell() {
+            super();
+            setAlignment(Pos.CENTER);
+        }
     }
 }
