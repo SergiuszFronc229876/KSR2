@@ -129,9 +129,17 @@ public class Data {
         List<Label> labelsSzerokosc = new ArrayList<>(List.of(waski, zwyczajny, szeroki, bardzoSzeroki));
         LinguisticVariable szerokosc = new LinguisticVariable("Szerokość", labelsSzerokosc);
 
+        //Rocznik
+        Label rocznikA = new Label("", "", new FuzzySet(new TrapezoidalFunction(0, 0, 0, 0), new ContinuousSet(0, 0.1)));
+        Label rocznikB = new Label("", "", new FuzzySet(new TrapezoidalFunction(0, 0, 0, 0), new ContinuousSet(0, 0.1)));
+        Label rocznikC = new Label("", "", new FuzzySet(new TrapezoidalFunction(0, 0, 0, 0), new ContinuousSet(0, 0.1)));
+        Label rocznikD = new Label("", "", new FuzzySet(new TrapezoidalFunction(0, 0, 0, 0), new ContinuousSet(0, 0.1)));
+        List<Label> labelRocznik = new ArrayList<>(List.of(rocznikA, rocznikB, rocznikC, rocznikD));
+        LinguisticVariable rocznik = new LinguisticVariable("Rocznik", labelRocznik);
+
         //Zmienne lingwistyczne
         linguisticVariables = new ArrayList<>();
-        linguisticVariables.addAll(new ArrayList<>(List.of(cena, przebieg, mocSilnika, zuzyciePaliwa, pojemnoscSilnika, dlugosc, pojemnoscZbiornikaPaliwa, rozstawOsi, momentObrotowy, szerokosc)));
+        linguisticVariables.addAll(new ArrayList<>(List.of(cena, przebieg, mocSilnika, zuzyciePaliwa, pojemnoscSilnika, dlugosc, pojemnoscZbiornikaPaliwa, rozstawOsi, momentObrotowy, szerokosc, rocznik)));
 
         //Kwantyfikatory Względne
         RelativeQuantifier prawieZaden = new RelativeQuantifier("Prawie żaden", new FuzzySet(new TrapezoidalFunction(0.00, 0.00, 0.10, 0.20), new ContinuousSet(0, 1)));

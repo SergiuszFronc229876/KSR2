@@ -109,6 +109,7 @@ public class MainViewController implements Initializable {
         TableColumn<CarDetails, String> column11 = new TableColumn<>("Width");
         TableColumn<CarDetails, String> column12 = new TableColumn<>("Length");
         TableColumn<CarDetails, String> column13 = new TableColumn<>("Fuel economy");
+        TableColumn<CarDetails, String> column14 = new TableColumn<>("Year");
 
         column1.setCellValueFactory(new PropertyValueFactory<>("id"));
         column2.setCellValueFactory(new PropertyValueFactory<>("franchiseName"));
@@ -122,9 +123,10 @@ public class MainViewController implements Initializable {
         column10.setCellValueFactory(new PropertyValueFactory<>("torque"));
         column11.setCellValueFactory(new PropertyValueFactory<>("width"));
         column12.setCellValueFactory(new PropertyValueFactory<>("length"));
-        column13.setCellValueFactory(new PropertyValueFactory<>("FuelEconomy"));
+        column13.setCellValueFactory(new PropertyValueFactory<>("fuelEconomy"));
+        column14.setCellValueFactory(new PropertyValueFactory<>("year"));
 
-        carDetailsTable.getColumns().addAll(List.of(column1, column2, column3, column4, column5, column6, column7, column8, column9, column10, column11, column12, column13));
+        carDetailsTable.getColumns().addAll(List.of(column1, column2, column3, column4, column5, column6, column7, column8, column9, column10, column11, column12, column13, column14));
         carDetailsTable.getItems().addAll(Data.carDetailsList);
     }
 
