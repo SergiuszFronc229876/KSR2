@@ -4,14 +4,16 @@ import lombok.experimental.UtilityClass;
 import pl.ksr.logic.calculation.functions.GaussianFunction;
 import pl.ksr.logic.calculation.functions.TrapezoidalFunction;
 import pl.ksr.logic.calculation.functions.TriangularFunction;
-import pl.ksr.logic.calculation.functions.UnionMembershipFunction;
 import pl.ksr.logic.calculation.sets.ContinuousSet;
 import pl.ksr.logic.calculation.sets.FuzzySet;
 import pl.ksr.logic.model.CarDetails;
 import pl.ksr.logic.summarization.*;
 import pl.ksr.logic.utils.CarDetailsReader;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @UtilityClass
 public class Data {
@@ -97,10 +99,11 @@ public class Data {
         LinguisticVariable dlugosc = new LinguisticVariable("Długość", labelsDlugosc);
 
         //Zbiornik Paliwa
-        Label mala = new Label("pozwalająca przejechać około 500 km bez tankowania Volkswagen Golfem 5 z silnikiem o pojemności 1400 cm3", "Pojemność zbiornika paliwa", new FuzzySet(new UnionMembershipFunction(new TrapezoidalFunction(20, 20, 35, 35), new GaussianFunction(35, 4, 35, 77)), new ContinuousSet(20, 160)));
-        Label standardowa = new Label("pozwalająca przejechać około 1000 km bez tankowania Volkswagen Golfem 5 z silnikiem o pojemności 1400 cm3", "Pojemność zbiornika paliwa", new FuzzySet(new GaussianFunction(65, 4, 28, 111), new ContinuousSet(20, 160)));
-        Label spora = new Label("pozwalająca przejechać około 1500 km bez tankowania Volkswagen Golfem 5 z silnikiem o pojemności 1400 cm3", "Pojemność zbiornika paliwa", new FuzzySet(new GaussianFunction(108, 4, 53, 108), new ContinuousSet(20, 160)));
-        List<Label> labelsZbiornik = new ArrayList<>(List.of(mala, standardowa, spora));
+        Label mala = new Label("pozwalająca przejechać około 500 km z średnim spalaniem wokolicach 5 l/100km", "Pojemność zbiornika paliwa", new FuzzySet(new GaussianFunction(38, 4, 20, 58), new ContinuousSet(20, 160)));
+        Label standardowa = new Label("pozwalająca przejechać około 800 km z średnim spalaniem wokolicach 8 l/100km", "Pojemność zbiornika paliwa", new FuzzySet(new GaussianFunction(60, 9, 20, 100), new ContinuousSet(20, 160)));
+        Label spora = new Label("pozwalająca przejechać około 1200 km z średnim spalaniemw okolicach 10 l/100km", "Pojemność zbiornika paliwa", new FuzzySet(new GaussianFunction(90, 10, 50, 130), new ContinuousSet(20, 160)));
+        Label najwieksza = new Label("pozwalająca przejechać około 1200 km z średnim spalaniemw okolicach 12 l/100km", "Pojemność zbiornika paliwa", new FuzzySet(new GaussianFunction(120, 8, 80, 160), new ContinuousSet(20, 160)));
+        List<Label> labelsZbiornik = new ArrayList<>(List.of(mala, standardowa, spora, najwieksza));
         LinguisticVariable pojemnoscZbiornikaPaliwa = new LinguisticVariable("Pojemność zbiornika paliwa", labelsZbiornik);
 
         //Rozstaw osi
