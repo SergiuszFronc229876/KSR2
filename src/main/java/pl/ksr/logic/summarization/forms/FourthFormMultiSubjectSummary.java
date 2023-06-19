@@ -38,6 +38,7 @@ public class FourthFormMultiSubjectSummary implements MultiSubjectSummary {
             }
 
         }
+        // 1 - inkluzja (S(P2),S(P1))
         return 1 - (implication / all.size());
     }
 

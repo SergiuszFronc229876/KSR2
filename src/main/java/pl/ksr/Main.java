@@ -24,7 +24,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         stage.setTitle("Generator podsumowań lingwistycznych");
-        Scene scene = new Scene(root, 1400, 750);
+        Scene scene = new Scene(root, 1800, 750);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
